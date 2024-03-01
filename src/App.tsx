@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './estilos/estilo.scss';
+import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
+import { AnimatePresence } from "framer-motion";
+import Menu from "./componentes/menu";
+import Cabecera from "./componentes/cabecera";
+import Inicio from "./paginas/inicio";
+import Especial from "./paginas/especial";
+import Conoceme from "./paginas/conoceme";
+import Archivo from "./paginas/archivo";
+import Entrada from "./paginas/entrada";
+import Acceso from "./paginas/acceso";
+import Administracion from "./paginas/administracion";
+import Aviso from "./paginas/aviso";
+import Privacidad from "./paginas/privacidad";
+
+const AnimatedRoutes = () => {
+    const location = useLocation();
+    return (
+        <AnimatePresence>
+            <Routes location={location} key={location.pathname}>
+                <Route path={"/"} element={<Inicio/>}/>
+                <Route path={"/especial"} element={<Especial/>}/>
+                <Route path={"/conoceme"} element={<Conoceme/>}/>
+                <Route path={"/archivo"} element={<Archivo/>}/>
+                <Route path={"/entrada/:id"} element={<Entrada/>}/>
+                <Route path={"/acceso"} element={<Acceso/>}/>
+                <Route path={"/administracion"} element={<Administracion/>}/>
+                <Route path={"/aviso"} element={<Aviso/>}/>
+                <Route path={"/privacidad"} element={<Privacidad/>}/>
+            </Routes>
+        </AnimatePresence>
+    );
+};
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <BrowserRouter>
+                <Cabecera/>
+                <Menu/>
+                <AnimatedRoutes/>
+            </BrowserRouter>
+        </div>
+    );
 }
 
 export default App;
