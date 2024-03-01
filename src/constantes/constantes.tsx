@@ -4,7 +4,7 @@ export const variantesPagina = {
     out: { opacity: 0}
 };
 
-export const baseURL = "https://nd-back-0e9fe8b65c95.herokuapp.com/api/";
+export const baseURL = String(process.env.BASE_URL);
 
 export const entradasPorPagina: number = Number(process.env.ENT_POR_PAG);
 export const epEscribeme: string = String(process.env.RUTA_ESC); // endpoint de escríbeme
