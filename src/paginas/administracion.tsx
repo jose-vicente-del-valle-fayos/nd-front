@@ -93,6 +93,7 @@ const Administracion = () => {
             }
         )();
     });
+
     if(redirigir) {
         return <Navigate to={"/acceso"}/>;
     }
@@ -102,6 +103,7 @@ const Administracion = () => {
     if(cexito) {
         setTimeout(() => {setCexito(false)}, 3000);
     }
+
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
             <h2>Insertar entrada</h2>
