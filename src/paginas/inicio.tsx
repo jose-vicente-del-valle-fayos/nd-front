@@ -13,9 +13,13 @@ const Inicio = () => {
     const [total, setTotal] = useState(0);
 
     const cargaMas = async () => {
-        const {data} = await axios.get("entradas?limite=" + entradasPorPagina + "&especial=false&pagina=" + pagina);
-        setEntradas([...entradas, ...data.datos]);
-        setTotal(data.meta.total);
+        try {
+            const {data} = await axios.get("entradas?limite=" + entradasPorPagina + "&especial=false&pagina=" + pagina);
+            setEntradas([...entradas, ...data.datos]);
+            setTotal(data.meta.total);
+        } catch(e) {
+            return(e);
+        }
     }
 
     useEffect(()=> {

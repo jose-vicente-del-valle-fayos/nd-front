@@ -13,11 +13,15 @@ const Acceso = () => {
     const [redirigir, setRedirigir] = useState(false);
     const ingresar = async (e: SyntheticEvent) => {
         e.preventDefault()
-        await axios.post("ingresar", {
-            "correo":      correo,
-            "contrasena":  contrasena
-        });
-        setRedirigir(true)
+        try {
+            await axios.post("ingresar", {
+                "correo": correo,
+                "contrasena": contrasena
+            });
+            setRedirigir(true);
+        } catch(e) {
+            return(e);
+        }
     }
     const salir = async (e: SyntheticEvent) => {
         e.preventDefault()

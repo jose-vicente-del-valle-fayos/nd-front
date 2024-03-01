@@ -14,9 +14,13 @@ const Archivo = () => {
         document.title = "Nuestro Diario · Archivo";
         (
             async () => {
-                const {data} = await axios.get("todas");
-                entini.current = data.datos;
-                setEntradas(data.datos);
+                try {
+                    const {data} = await axios.get("todas");
+                    entini.current = data.datos;
+                    setEntradas(data.datos);
+                } catch(e) {
+                    return(e);
+                }
             }
         )();
     });
