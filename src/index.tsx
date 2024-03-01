@@ -5,7 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import axios from 'axios';
 
-axios.defaults.baseURL = "https://nd-back-0e9fe8b65c95.herokuapp.com/api/";
+axios.defaults.baseURL = process.env.BASE_URL;
 axios.defaults.withCredentials = true;
 
 
