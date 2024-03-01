@@ -76,7 +76,7 @@ const Administracion = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get("usuario");
+                    const {data} = await axios.get(baseURL + "usuario");
                     setUsuario(new Usuario(
                         data.id,
                         data.sobrenombre,
@@ -87,6 +87,7 @@ const Administracion = () => {
                         data.total_ent,
                     ));
                 } catch (e) {
+                    console.log(e);
                     setRedirigir(true);
                 }
             }
