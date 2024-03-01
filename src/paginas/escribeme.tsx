@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {epEscribeme, variantesPagina} from "../constantes/constantes";
+import {epEscribeme, variantesPagina, baseURL} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 
@@ -27,7 +27,7 @@ const Escribeme = () => {
             };
             console.log(nuevoCorreo)
             if(!nuevoCorreo.gotcha) {
-                await axios.post(epEscribeme, nuevoCorreo);
+                await axios.post(baseURL + epEscribeme, nuevoCorreo);
                 setMexito(true);
             }
         } catch (e) {

@@ -1,6 +1,6 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {motion} from "framer-motion";
-import {variantesPagina} from "../constantes/constantes";
+import {variantesPagina, baseURL} from "../constantes/constantes";
 import axios from "axios";
 import {Navigate} from "react-router-dom";
 import Pie from "../componentes/pie";
@@ -38,10 +38,10 @@ const Administracion = () => {
             };
             console.log(nuevaEntrada);
             if(eid === 0) {
-                await axios.post("entrada", nuevaEntrada);
+                await axios.post(baseURL + "entrada", nuevaEntrada);
                 setEexito(true);
             } else {
-                await axios.put("entrada/" + eid, nuevaEntrada);
+                await axios.put(baseURL + "entrada" + eid, nuevaEntrada);
                 setEexito(true);
             }
         } catch (e) {
@@ -60,10 +60,10 @@ const Administracion = () => {
                 comentario: ccomentario
             };
             if(cid === 0) {
-                await axios.post("comentario", nuevoComentario);
+                await axios.post(baseURL + "comentario", nuevoComentario);
                 setCexito(true);
             } else {
-                await axios.put("comentario/" + cid, nuevoComentario);
+                await axios.put(baseURL + "comentario" + cid, nuevoComentario);
                 setCexito(true);
             }
         } catch (e) {

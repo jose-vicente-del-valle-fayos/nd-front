@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link, Navigate, useParams} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina} from "../constantes/constantes";
+import {variantesPagina, baseURL} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 import {Comentario} from "../modelos/comentario";
@@ -18,7 +18,7 @@ const Entrada = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get("entrada/" + params.id);
+                    const {data} = await axios.get(baseURL + "entrada" + params.id);
                     setEntradas([data.datos]);
                 } catch (e) {
                     console.log(e);
@@ -28,7 +28,7 @@ const Entrada = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get("usuario");
+                    const {data} = await axios.get(baseURL + "usuario");
                     setUsuario(new Usuario(
                         data.id,
                         data.sobrenombre,
@@ -47,7 +47,7 @@ const Entrada = () => {
 
     const eliminarEntrada = async () => {
         try {
-            await axios.delete("entrada/" + entradas[0].id);
+            await axios.delete(baseURL + "entrada" + entradas[0].id);
             setRedirigir(true);
         } catch (e) {
             console.log(e);
@@ -56,7 +56,7 @@ const Entrada = () => {
 
     const eliminarComentario = async (id: number) => {
         try {
-            await axios.delete("comentario/" + id);
+            await axios.delete(baseURL + "comentario" + id);
             setRedirigir(true);
         } catch (e) {
             console.log(e);

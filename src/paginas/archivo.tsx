@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina} from "../constantes/constantes";
+import {variantesPagina, baseURL} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 import {Entrada} from "../modelos/entrada";
@@ -15,7 +15,7 @@ const Archivo = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get("todas");
+                    const {data} = await axios.get(baseURL + "todas");
                     entini.current = data.datos;
                     setEntradas(data.datos);
                 } catch(e) {

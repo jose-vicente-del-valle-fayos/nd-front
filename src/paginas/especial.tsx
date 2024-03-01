@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {entradasPorPagina, variantesPagina} from "../constantes/constantes";
+import {entradasPorPagina, variantesPagina, baseURL} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 import {Entrada} from "../modelos/entrada";
@@ -14,7 +14,7 @@ const Especial = () => {
 
     const cargaMas = async () => {
         try {
-            const {data} = await axios.get("entradas?limite=" + entradasPorPagina + "&especial=true&pagina=" + pagina);
+            const {data} = await axios.get(baseURL + "entradas?limite=" + entradasPorPagina + "&especial=true&pagina=" + pagina);
             setEntradas([...entradas, ...data.datos]);
             setTotal(data.meta.total);
         } catch(e) {

@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {Navigate} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina} from "../constantes/constantes";
+import {variantesPagina, baseURL} from "../constantes/constantes";
 import axios from "axios";
 
 const Acceso = () => {
@@ -14,7 +14,7 @@ const Acceso = () => {
     const ingresar = async (e: SyntheticEvent) => {
         e.preventDefault()
         try {
-            await axios.post("ingresar", {
+            await axios.post(baseURL + "ingresar", {
                 "correo": correo,
                 "contrasena": contrasena
             });
@@ -25,7 +25,7 @@ const Acceso = () => {
     }
     const salir = async (e: SyntheticEvent) => {
         e.preventDefault()
-        await axios.post('http://localhost:8000/api/salir');
+        await axios.post(baseURL + "salir");
     }
     if(redirigir) {
         return <Navigate to={"/administracion"}/>;
