@@ -26,13 +26,19 @@ const Archivo = () => {
     });
 
     const encontrar = (palabra: string) => {
-        let entFilt = entini.current.filter(e => {
-            return e.fecha.includes(palabra) ||
-                e.titulo.includes(palabra) ||
-                e.usuario.includes(palabra) ||
-                e.contenido.includes(palabra);
-        });
-        setEntradas(entFilt);
+        if(entradas) {
+            let entFilt = entini.current.filter(e => {
+                return e.fecha.includes(palabra) ||
+                    e.titulo.includes(palabra) ||
+                    e.usuario.includes(palabra) ||
+                    e.contenido.includes(palabra);
+            });
+            setEntradas(entFilt);
+        } else {
+            axios.get(baseURL + "todas").then((data) => {
+                setEntradas(data.data.datos);
+            });
+        }
     }
 
     return (
