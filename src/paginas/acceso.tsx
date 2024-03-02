@@ -11,6 +11,8 @@ const Acceso = () => {
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [redirigir, setRedirigir] = useState(false);
+    const [iexito, setIexito] = useState(false);
+
     const ingresar = async (e: SyntheticEvent) => {
         e.preventDefault()
         try {
@@ -24,11 +26,19 @@ const Acceso = () => {
         }
     }
     const salir = async (e: SyntheticEvent) => {
-        e.preventDefault()
-        await axios.post(baseURL + "salir");
+        try {
+            e.preventDefault()
+            await axios.post(baseURL + "salir");
+            setIexito(true);
+        } catch(e) {
+            return(e);
+    }
     }
     if(redirigir) {
         return <Navigate to={"/administracion"}/>;
+    }
+    if(iexito) {
+        setTimeout(() => {setIexito(false)}, 3000);
     }
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
@@ -46,7 +56,9 @@ const Acceso = () => {
                                spellCheck="false"
                                onChange={e => setContrasena(e.target.value)}/><label>Contraseña</label></li>
                     <li>
-                        <button type="submit" className="enviar" value="Iniciar">Iniciar</button>
+                        <button type="submit" className="enviar" value="Iniciar">
+                            {iexito ? <span>Ok</span> : <span>Iniciar</span>}
+                        </button>
                     </li>
                 </ul>
             </form>
