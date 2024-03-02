@@ -766,6 +766,7 @@ main {
           bottom: 0px;
           width: $tamano-checkmark;
           height: $tamano-checkmark;
+          z-index: 5;
         }
         .checkmark {
           position: absolute;
