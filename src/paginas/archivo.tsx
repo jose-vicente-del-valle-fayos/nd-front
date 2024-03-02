@@ -8,7 +8,7 @@ import {Entrada} from "../modelos/entrada";
 
 const Archivo = () => {
     const [entradas, setEntradas] = useState<any[]>([]);
-    const [entini, setEntini] = useState<any[]>([]);
+    const entini = useRef<any[]>([]);
 
     useEffect(() => {
         document.title = "Nuestro Diario · Archivo";
@@ -17,7 +17,7 @@ const Archivo = () => {
                 try {
                     const {data} = await axios.get(baseURL + "todas");
                     setEntradas(data.datos);
-                    setEntini(data.datos);
+                    entini.current = data.datos;
                 } catch(e) {
                     return(e);
                 }
@@ -27,14 +27,14 @@ const Archivo = () => {
 
     const encontrar = (palabra: string) => {
         if(palabra) {
-            let entFilt = entini.filter(ent => {
+            let entFilt = entini.current.filter(ent => {
                 return ent.fecha.includes(palabra) ||
                     ent.titulo.includes(palabra) ||
                     ent.usuario.includes(palabra) ||
                     ent.contenido.includes(palabra);
             });
             setEntradas(entFilt);
-        } else { setEntradas(entini); }
+        } else { setEntradas(entini.current); }
     }
 
     return (
