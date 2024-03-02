@@ -78,7 +78,7 @@ const Entrada = () => {
                     {(entradas[0].total_com > 0) ? entradas[0].comentarios.map((comentario: Comentario, index: number) => {
                         return (
                             <div className={"comentario"} key={index}>
-                                <h3>{comentario.fecha} · {comentario.usuario} · {usuario.id !== 0 ? <span> · <Link to={"#"} onClick={() => eliminarComentario(comentario.id)}>eliminar</Link></span> : ""}</h3>
+                                <h3>{comentario.fecha} · {comentario.usuario} · id{comentario.id}{usuario.id !== 0 ? <span> · <Link to={"#"} onClick={() => eliminarComentario(comentario.id)}>eliminar</Link></span> : ""}</h3>
                                 <div dangerouslySetInnerHTML={{__html: comentario.comentario}}/>
                             </div>
                         );
