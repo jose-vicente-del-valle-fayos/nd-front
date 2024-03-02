@@ -7,7 +7,6 @@ import axios from "axios";
 import {Entrada} from "../modelos/entrada";
 
 const Archivo = () => {
-    /*
     const [entradas, setEntradas] = useState<any[]>([]);
     const entini = useRef<any[]>([]);
 
@@ -31,8 +30,7 @@ const Archivo = () => {
         });
         setEntradas(entFilt);
     }
-    */
-
+/*
     const [entradas, setEntradas] = useState<any[]>([]);
     const entini = useRef<any[]>([]);
 
@@ -66,7 +64,7 @@ const Archivo = () => {
             setEntradas(entini.current);
         }
     }
-
+*/
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
             <article>
