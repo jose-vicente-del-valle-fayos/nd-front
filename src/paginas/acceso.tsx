@@ -17,8 +17,6 @@ const Acceso = () => {
             await axios.post(baseURL + "ingresar", {
                 "correo": correo,
                 "contrasena": contrasena
-            },{
-                withCredentials: true,
             });
             setRedirigir(true);
         } catch(e) {

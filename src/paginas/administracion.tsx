@@ -76,9 +76,7 @@ const Administracion = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get(baseURL + "usuario",{
-                        withCredentials: true,
-                    });
+                    const {data} = await axios.get(baseURL + "usuario");
                     setUsuario(new Usuario(
                         data.id,
                         data.sobrenombre,
