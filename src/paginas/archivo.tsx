@@ -16,6 +16,7 @@ const Archivo = () => {
             async () => {
                 try {
                     const {data} = await axios.get(baseURL + "todas");
+                    console.log(data);
                     entini.current = data.datos;
                     console.log(entini.current)
                 } catch(e) {
