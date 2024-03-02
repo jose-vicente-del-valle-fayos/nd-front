@@ -7,33 +7,8 @@ import axios from "axios";
 import {Entrada} from "../modelos/entrada";
 
 const Archivo = () => {
-    /*
     const [entradas, setEntradas] = useState<any[]>([]);
-    const entini = useRef<any[]>([]);
-
-    useEffect(() => {
-        document.title = "Nuestro Diario · Archivo";
-        (
-            async () => {
-                const {data} = await axios.get("todas");
-                entini.current = data.datos;
-                setEntradas(data.datos);
-            }
-        )();
-    });
-
-    const encontrar = (palabra: string) => {
-        let entFilt = entini.current.filter(e => {
-            return e.fecha.includes(palabra) ||
-                e.titulo.includes(palabra) ||
-                e.usuario.includes(palabra) ||
-                e.contenido.includes(palabra);
-        });
-        setEntradas(entFilt);
-    }
-    */
-    const [entradas, setEntradas] = useState<any[]>([]);
-    const entini = useRef<any[]>([]);
+    const [entini, setEntini] = useState<any[]>([]);
 
     useEffect(() => {
         document.title = "Nuestro Diario · Archivo";
@@ -41,7 +16,8 @@ const Archivo = () => {
             async () => {
                 try {
                     const {data} = await axios.get(baseURL + "todas");
-                    setEntradas(data.datos)
+                    setEntradas(data.datos);
+                    setEntini(data.datos);
                 } catch(e) {
                     return(e);
                 }
@@ -50,9 +26,6 @@ const Archivo = () => {
     });
 
     const encontrar = (palabra: string) => {
-        if(!entini.current) {
-            entini.current = entradas;
-        }
         if(palabra) {
             let entFilt = entini.current.filter(e => {
                 return e.fecha.includes(palabra) ||
@@ -62,7 +35,7 @@ const Archivo = () => {
             });
             setEntradas(entFilt);
         } else {
-            setEntradas(entini.current);
+            setEntradas(entini);
         }
     }
 
