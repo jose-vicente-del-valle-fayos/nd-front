@@ -7,6 +7,7 @@ import axios from "axios";
 import {Entrada} from "../modelos/entrada";
 
 const Archivo = () => {
+    /*
     const [entradas, setEntradas] = useState<any[]>([]);
     const entini = useRef<any[]>([]);
 
@@ -30,8 +31,8 @@ const Archivo = () => {
         });
         setEntradas(entFilt);
     }
+    */
 
-    /*
     const [entradas, setEntradas] = useState<any[]>([]);
     const entini = useRef<any[]>([]);
 
@@ -65,7 +66,6 @@ const Archivo = () => {
             setEntradas(entini.current);
         }
     }
-    */
 
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
@@ -75,7 +75,7 @@ const Archivo = () => {
             </article>
             <form id="formEncontrar" onSubmit={e => e.preventDefault()} /*className="formEncontrar"*/ >
                 <ul className="ul-form">
-                    <li className="izquierda"><input type="text" onChange={e => encontrar(e.target.value)} className="encontrar" name="encontrar" placeholder="Escribe aquí…"/><label>Escribe aquí…</label></li>
+                    <li className="izquierda"><input type="text" /* onChange={e => encontrar(e.target.value)} */className="encontrar" name="encontrar" placeholder="Escribe aquí…"/><label>Escribe aquí…</label></li>
                 </ul>
             </form>
             <article>
