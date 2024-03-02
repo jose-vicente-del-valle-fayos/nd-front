@@ -55,7 +55,7 @@ const Inicio = () => {
                 );
             }) : ""}
             {(entradas && (entradas.length > 0) && (entradas.length < total)) ?
-                <button onClick={incrementa} className={"enviar boton-largo"}
+                <button onClick={incrementa} className={"enviar boton-muy-largo"}
                         value="Ver más…">Ver más…
                 </button> : "" }
             <Pie/>
