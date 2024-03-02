@@ -18,7 +18,7 @@ const Entrada = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get(baseURL + "entrada" + params.id);
+                    const {data} = await axios.get(baseURL + "entrada/" + params.id);
                     setEntradas([data.datos]);
                 } catch (e) {
                     console.log(e);

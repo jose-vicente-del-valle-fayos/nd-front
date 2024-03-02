@@ -41,7 +41,7 @@ const Administracion = () => {
                 await axios.post(baseURL + "entrada", nuevaEntrada);
                 setEexito(true);
             } else {
-                await axios.put(baseURL + "entrada" + eid, nuevaEntrada);
+                await axios.put(baseURL + "entrada/" + eid, nuevaEntrada);
                 setEexito(true);
             }
         } catch (e) {
@@ -63,7 +63,7 @@ const Administracion = () => {
                 await axios.post(baseURL + "comentario", nuevoComentario);
                 setCexito(true);
             } else {
-                await axios.put(baseURL + "comentario" + cid, nuevoComentario);
+                await axios.put(baseURL + "comentario/" + cid, nuevoComentario);
                 setCexito(true);
             }
         } catch (e) {
