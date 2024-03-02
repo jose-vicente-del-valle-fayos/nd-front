@@ -16,7 +16,7 @@ const Archivo = () => {
             async () => {
                 try {
                     const {data} = await axios.get(baseURL + "todas");
-                    entini.current = data.datos;
+                    setEntradas(data.datos)
                 } catch(e) {
                     return(e);
                 }
@@ -25,7 +25,10 @@ const Archivo = () => {
     });
 
     const encontrar = (palabra: string) => {
-        if(entradas) {
+        if(!entini.current) {
+            entini.current = entradas;
+        }
+        if(palabra) {
             let entFilt = entini.current.filter(e => {
                 return e.fecha.includes(palabra) ||
                     e.titulo.includes(palabra) ||
@@ -34,9 +37,7 @@ const Archivo = () => {
             });
             setEntradas(entFilt);
         } else {
-            axios.get(baseURL + "todas").then((data) => {
-                setEntradas(data.data.datos);
-            });
+            setEntradas(entini.current);
         }
     }
 
