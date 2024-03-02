@@ -236,7 +236,7 @@ $tamano-u-fuente-codigo-inline: 16;
 $tamano-fuente-codigo-inline: #{$tamano-u-fuente-codigo-inline}px;
 $tamano-u-comentario: 15;
 $tamano-comentario: #{$tamano-u-comentario}px;
-$tamano-checkmark: 1.11em;
+$tamano-checkmark: 1.2em;
 $anchura-boton: 5em;
 $anchura-boton-largo: 7em;
 $anchura-boton-muy-largo: 9em;
@@ -761,6 +761,11 @@ main {
         .contenedor-label input[type='checkbox'] {
           position: absolute;
           opacity: 0;
+          margin: 0px;
+          left: 0px;
+          bottom: 0px;
+          width: $tamano-checkmark;
+          height: $tamano-checkmark;
         }
         .checkmark {
           position: absolute;
