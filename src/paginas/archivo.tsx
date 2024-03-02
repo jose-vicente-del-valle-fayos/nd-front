@@ -34,7 +34,7 @@ const Archivo = () => {
                     ent.contenido.includes(palabra);
             });
             setEntradas(entFilt);
-        } else { setEntradas(entini) };
+        } else { setEntradas(entini); }
     }
 
     return (
