@@ -74,7 +74,7 @@ const Archivo = () => {
             </article>
             <form id="formEncontrar" onSubmit={e => e.preventDefault()} /*className="formEncontrar"*/ >
                 <ul className="ul-form">
-                    <li className="izquierda"><input type="text" onChange={e => encontrar(e.target.value)} sclassName="encontrar" name="encontrar" placeholder="Escribe aquí…"/><label>Escribe aquí…</label></li>
+                    <li className="izquierda"><input type="text" onChange={e => encontrar(e.target.value)} className="encontrar" name="encontrar" placeholder="Escribe aquí…"/><label>Escribe aquí…</label></li>
                 </ul>
             </form>
             <article>
