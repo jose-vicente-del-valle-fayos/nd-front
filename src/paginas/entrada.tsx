@@ -47,7 +47,7 @@ const Entrada = () => {
 
     const eliminarEntrada = async () => {
         try {
-            await axios.delete(baseURL + "entrada" + entradas[0].id);
+            await axios.delete(baseURL + "entrada/" + entradas[0].id);
             setRedirigir(true);
         } catch (e) {
             console.log(e);
@@ -56,7 +56,7 @@ const Entrada = () => {
 
     const eliminarComentario = async (id: number) => {
         try {
-            await axios.delete(baseURL + "comentario" + id);
+            await axios.delete(baseURL + "comentario/" + id);
             setRedirigir(true);
         } catch (e) {
             console.log(e);
