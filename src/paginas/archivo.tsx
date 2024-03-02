@@ -27,7 +27,7 @@ const Archivo = () => {
 
     const encontrar = (palabra: string) => {
         if(palabra) {
-            let entFilt = entini.current.filter(e => {
+            let entFilt = entini.filter(e => {
                 return e.fecha.includes(palabra) ||
                     e.titulo.includes(palabra) ||
                     e.usuario.includes(palabra) ||
