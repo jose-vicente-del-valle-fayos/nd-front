@@ -62,7 +62,7 @@ const Acceso = () => {
                                onChange={e => setContrasena(e.target.value)}/><label>Contraseña</label></li>
                     <li>
                         <button type="submit" className="enviar boton-largo" value="Iniciar">
-                            {iexito ? <i className="mdi">done</i> : <span>Ingresar</span>}
+                            {iexito ? <i className="mdi mdi-button">done</i> : <span>Ingresar</span>}
                         </button>
                     </li>
                 </ul>
@@ -76,7 +76,7 @@ const Acceso = () => {
                 <ul className="ul-form">
                     <li>
                         <button type="submit" className="enviar" value="Salir">
-                            {sexito ? <i className="mdi">done</i> : <span>Salir</span>}
+                            {sexito ? <i className="mdi mdi-button">done</i> : <span>Salir</span>}
                         </button>
                     </li>
                 </ul>

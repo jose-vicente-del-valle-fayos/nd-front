@@ -526,6 +526,9 @@ label {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: 'liga';
 }
+.mdi-button {
+    margin-top: $margin-h6-mdi-top;
+}
 nav {
   display: block;
   overflow: hidden;
