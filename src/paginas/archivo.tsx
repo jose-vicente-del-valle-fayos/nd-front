@@ -9,6 +9,7 @@ import {Entrada} from "../modelos/entrada";
 const Archivo = () => {
     const [entradas, setEntradas] = useState<any[]>([]);
     const entini = useRef<any[]>([]);
+    let cargado  = false;
 
     useEffect(() => {
         document.title = "Nuestro Diario · Archivo";
@@ -16,9 +17,11 @@ const Archivo = () => {
             async () => {
                 try {
                     const {data} = await axios.get(baseURL + "todas");
-                    console.log(data);
                     entini.current = data.datos;
-                    console.log(entini.current)
+                    if(!cargado) {
+                        setEntradas(data.datos)
+                        cargado = true;
+                    }
                 } catch(e) {
                     return(e);
                 }
