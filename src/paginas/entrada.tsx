@@ -72,7 +72,7 @@ const Entrada = () => {
             {(entradas && (entradas.length > 0)) ?
                 <article>
                     <h2><Link to={"/entrada/" + entradas[0].id}>{entradas[0].titulo}</Link></h2>
-                    <h3>{entradas[0].fecha} · {entradas[0].total_com === 0 ? "sin comentarios" : (entradas[0].total_com === 1 ? "1 comentario" : (entradas[0].total_com + " comentarios"))}{usuario.id !== 0 ? <span> · <Link to={"#"} onClick={eliminarEntrada}>eliminar</Link></span> : ""}<span
+                    <h3>{entradas[0].fecha} · {entradas[0].usuario} · {entradas[0].total_com === 0 ? "sin comentarios" : (entradas[0].total_com === 1 ? "1 comentario" : (entradas[0].total_com + " comentarios"))}{usuario.id !== 0 ? <span> · <Link to={"#"} onClick={eliminarEntrada}>eliminar</Link></span> : ""}<span
                         className="alineado-derecha"><Link to={"/"} title="Volver atrás"><i className="mdi">arrow_back</i></Link></span></h3>
                     <div dangerouslySetInnerHTML={{__html: entradas[0].contenido}}/>
                     {(entradas[0].total_com > 0) ? entradas[0].comentarios.map((comentario: Comentario, index: number) => {
