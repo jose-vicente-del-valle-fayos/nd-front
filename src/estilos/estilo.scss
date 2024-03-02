@@ -237,10 +237,10 @@ $tamano-fuente-codigo-inline: #{$tamano-u-fuente-codigo-inline}px;
 $tamano-u-comentario: 15;
 $tamano-comentario: #{$tamano-u-comentario}px;
 $tamano-checkmark: 1.2em;
+$espacio-checkmark: 0.2em;
 $anchura-boton: 5em;
 $anchura-boton-largo: 7em;
 $anchura-boton-muy-largo: 9em;
-$anchura-checkmark: 0.71em;
 $margin-top-h6: $altura-linea;
 $margin-nav-top: 2.06em;
 $margin-top-h2: $altura-linea + 0.6em;
@@ -791,10 +791,10 @@ main {
           display: block;
         }
         .contenedor-label .checkmark:after {
-          top: calc($margin-label / 2);
-          left: calc($margin-label / 2);
-          width: $anchura-checkmark;
-          height: $anchura-checkmark;
+          top: $espacio-checkmark;
+          left: $espacio-checkmark;
+          width: $tamano-checkmark - (2 * $espacio-checkmark);
+          height: $tamano-checkmark - (2 * $espacio-checkmark);
           background-color: $color-gris-muy-mas-claro; @media (prefers-color-scheme: dark) { background-color: $d-color-gris-muy-mas-claro; }
           /*
           top: #{1/ ($proporcion-doble * $proporcion-doble)}em;
