@@ -55,7 +55,8 @@ const Escribeme = () => {
                     <li><textarea className="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje… *" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={(e) => setMensaje(e.target.value)}></textarea><label>Escribe aquí tu mensaje… *</label></li>
                     <li><label className="contenedor-label noetiquetaflotante" htmlFor="privacidad"><input type="checkbox" id="privacidad" className="especial admin" name="privacidad"/><span className="checkmark left-cero"></span><h3 className="displayinline colorgris">Entiendo y acepto la <em><Link to={"/privacidad"}>Política de Privacidad</Link></em>.</h3></label></li>
                     <li className="invisible"><input type="hidden" name="gotcha" onChange={(e) => setGotcha(e.target.value)}/></li>
-                    <li><button type="submit">{mexito ? <span>Ok</span> : <span>Enviar</span>}</button></li>
+                    <li><button type="submit">{mexito ? <i className="mdi">done</i> : <span>Enviar</span>}</button>
+                    </li>
                 </ul>
             </form>
             <Pie/>

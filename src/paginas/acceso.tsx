@@ -12,33 +12,38 @@ const Acceso = () => {
     const [contrasena, setContrasena] = useState("");
     const [redirigir, setRedirigir] = useState(false);
     const [iexito, setIexito] = useState(false);
+    const [sexito, setSexito] = useState(false);
 
     const ingresar = async (e: SyntheticEvent) => {
-        e.preventDefault()
+        e.preventDefault();
         try {
             await axios.post(baseURL + "ingresar", {
                 "correo": correo,
                 "contrasena": contrasena
             });
+            setIexito(true);
             setRedirigir(true);
         } catch(e) {
             return(e);
         }
     }
     const salir = async (e: SyntheticEvent) => {
+        e.preventDefault();
         try {
-            e.preventDefault()
+            setSexito(true);
             await axios.post(baseURL + "salir");
-            setIexito(true);
         } catch(e) {
             return(e);
-    }
+        }
     }
     if(redirigir) {
         return <Navigate to={"/administracion"}/>;
     }
     if(iexito) {
         setTimeout(() => {setIexito(false)}, 3000);
+    }
+    if(sexito) {
+        setTimeout(() => {setSexito(false)}, 3000);
     }
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
@@ -56,8 +61,8 @@ const Acceso = () => {
                                spellCheck="false"
                                onChange={e => setContrasena(e.target.value)}/><label>Contraseña</label></li>
                     <li>
-                        <button type="submit" className="enviar" value="Iniciar">
-                            {iexito ? <span>Ok</span> : <span>Iniciar</span>}
+                        <button type="submit" className="enviar boton-largo" value="Iniciar">
+                            {iexito ? <i className="mdi">done</i> : <span>Ingresar</span>}
                         </button>
                     </li>
                 </ul>
@@ -70,7 +75,9 @@ const Acceso = () => {
             <form onSubmit={salir}>
                 <ul className="ul-form">
                     <li>
-                        <button type="submit" className="enviar" value="Salir">Salir</button>
+                        <button type="submit" className="enviar" value="Salir">
+                            {sexito ? <i className="mdi">done</i> : <span>Salir</span>}
+                        </button>
                     </li>
                 </ul>
             </form>

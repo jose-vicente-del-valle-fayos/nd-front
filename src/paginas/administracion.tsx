@@ -142,7 +142,7 @@ const Administracion = () => {
                                onChange={(e) => setEfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
                         <button type="submit" className="enviar boton-largo"
-                                value="Publicar">{eexito ? <span>Ok</span> : <span>Publicar</span>}
+                                value="Publicar">{eexito ? <i className="mdi">done</i> : <span>Publicar</span>}
                         </button>
                     </li>
                 </ul>
@@ -172,7 +172,8 @@ const Administracion = () => {
                                placeholder="Fecha (AAAA-MM-DD)" autoComplete="off" autoCorrect="off"
                                autoCapitalize="off" spellCheck="false" onChange={(e) => setCfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
-                        <button type="submit" className="enviar boton-largo">{cexito ? <span>Ok</span> : <span>Comentar</span>}</button>
+                        <button type="submit" className="enviar boton-largo">{cexito ? <i className="mdi">done</i> :
+                            <span>Comentar</span>}</button>
                     </li>
                 </ul>
             </form>
