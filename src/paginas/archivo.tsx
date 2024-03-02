@@ -26,13 +26,15 @@ const Archivo = () => {
     });
 
     const encontrar = (palabra: string) => {
-        let entFilt = entini.filter(ent => {
-            return ent.fecha.includes(palabra) ||
-                ent.titulo.includes(palabra) ||
-                ent.usuario.includes(palabra) ||
-                ent.contenido.includes(palabra);
-        });
-        setEntradas(entFilt);
+        if(palabra) {
+            let entFilt = entini.filter(ent => {
+                return ent.fecha.includes(palabra) ||
+                    ent.titulo.includes(palabra) ||
+                    ent.usuario.includes(palabra) ||
+                    ent.contenido.includes(palabra);
+            });
+            setEntradas(entFilt);
+        } else { setEntradas(entini) };
     }
 
     return (
