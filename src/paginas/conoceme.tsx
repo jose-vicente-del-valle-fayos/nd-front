@@ -14,10 +14,11 @@ const Conoceme = () => {
                 <h2>Conóceme</h2>
                 <h3>José Vicente del Valle Fayos
                     <span className="alineado-derecha">
-                        <Link to={"/"} title="Copiar enlace" id="clic-conoceme"><i className="mdi">link</i></Link>
+                        <Link to={"/"} title="Volver atrás"><i className="mdi">arrow_back</i></Link>
                     </span>
                 </h3>
-                <p>Crecí en un pequeño pueblo del interior de Valencia donde <strong>mis maestros me enseñaron a distinguir lo bueno de lo malo</strong>. Como no quería ser malo, empecé a comportarme como si fuera otro. Y ahora no sé quien soy.</p>
+                <p>Crecí en un pequeño pueblo del interior de Valencia donde <strong>mis maestros me enseñaron a
+                    distinguir lo bueno de lo malo</strong>. Como no quería ser malo, empecé a comportarme como si fuera otro. Y ahora no sé quien soy.</p>
                 <p>Ya en el instituto, <strong>intenté llenar el vacío de mi identidad olvidada con la presencia de una chica que renegaba de mí</strong>. Y así acabé en la consulta del especialista.</p>
                 <p>El especialista me dijo: “Háblame de tu infancia”. Entonces, <strong>empecé a inventar las mismas historias que mis maestros contaban cuando era niño</strong>. Esas historias iban recorriendo nuestras mejillas y me iban liberando de ser el otro que nunca fui.</p>
                 <img src={require("../imagenes/jose-vicente-del-valle-fayos.jpg")} alt={"José Vicente del Valle Fayos"} title={"José Vicente del Valle Fayos"}/>
