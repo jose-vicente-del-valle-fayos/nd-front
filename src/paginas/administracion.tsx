@@ -109,11 +109,13 @@ const Administracion = () => {
             <h2>Insertar entrada</h2>
             <h3>{usuario.nombreCompleto}</h3>
             <p>Insertar o actualizar una entrada en nuestro diario, según se indique el identificador o no. Marcar
-                especial para incluir la entrada en la sección de especial. Escribir el contenido en formato markdown.</p>
+                especial para incluir la entrada en la sección de especial. Escribir el contenido en formato
+                markdown.</p>
             <form onSubmit={crearActualizarEntrada}>
                 <ul className="ul-form">
                     <li><label className="contenedor-label noetiquetaflotante especial admin" htmlFor="especial"><input
-                        type="checkbox" className="especial admin" name="especial" onChange={(e) => setEespecial(e.target.checked)}/><span
+                        type="checkbox" className="especial admin" name="especial"
+                        onChange={(e) => setEespecial(e.target.checked)}/><span
                         className="checkmark left-cero"></span>Especial</label></li>
                     <li><input type="text" className="id admin" name="id" placeholder="Entrada"
                                autoComplete="off" autoCorrect="off" autoCapitalize="off"
@@ -142,37 +144,47 @@ const Administracion = () => {
                                onChange={(e) => setEfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
                         <button type="submit" className="enviar boton-largo"
-                                value="Publicar">{eexito ? <i className="mdi mdi-button">done</i> : <span>Publicar</span>}
+                                value="Publicar">{eexito ? <i className="mdi mdi-button">done</i> :
+                            <span>Publicar</span>}
                         </button>
                     </li>
                 </ul>
             </form>
             <h2>Insertar comentario</h2>
-            <p>Insertar o actualizar el comentario de una entrada de nuestro diario. Escribir el comentario en formato markdown.</p>
+            <h3>{usuario.nombreCompleto}</h3>
+            <p>Insertar o actualizar el comentario de una entrada de nuestro diario. Escribir el comentario en formato
+                markdown.</p>
             <form onSubmit={crearActualizarComentario}>
                 <ul className="ul-form">
                     <li><input type="text" className="id admin" name="usuario" placeholder="Id del comentario"
                                autoComplete="off" autoCorrect="off" autoCapitalize="off"
-                               spellCheck="false" onChange={(e) => setCid(Number(e.target.value))}/><label>Id del comentario</label></li>
+                               spellCheck="false" onChange={(e) => setCid(Number(e.target.value))}/><label>Id del
+                        comentario</label></li>
                     <li><input type="text" className="ident admin" name="usuario" placeholder="Id de la entrada"
                                autoComplete="off" autoCorrect="off" autoCapitalize="off"
-                               spellCheck="false"  onChange={(e) => setCident(Number(e.target.value))}/><label>Id de la entrada</label></li>
+                               spellCheck="false" onChange={(e) => setCident(Number(e.target.value))}/><label>Id de la
+                        entrada</label></li>
                     <li><input type="text" className="usuario admin" name="usuario" placeholder="Usuario"
                                autoComplete="off" autoCorrect="off" autoCapitalize="off"
                                spellCheck="false" onChange={(e) => setCusuario(e.target.value)}/><label>Usuario</label>
                     </li>
                     <li><input type="text" className="correo admin" name="correo"
                                placeholder="Correo (no será publicado)" autoComplete="off" autoCorrect="off"
-                               autoCapitalize="off" spellCheck="false" onChange={(e) => setCcorreo(e.target.value)}/><label>Correo (no será publicado)</label></li>
+                               autoCapitalize="off" spellCheck="false"
+                               onChange={(e) => setCcorreo(e.target.value)}/><label>Correo (no será publicado)</label>
+                    </li>
                     <li><textarea className="contenido admin" name="comentario"
                                   placeholder="Escribe aquí el comentario…" autoComplete="off" autoCorrect="off"
-                                  autoCapitalize="off" spellCheck="false" onChange={(e) => setCcomentario(e.target.value)}></textarea><label>Escribe aquí el
+                                  autoCapitalize="off" spellCheck="false"
+                                  onChange={(e) => setCcomentario(e.target.value)}></textarea><label>Escribe aquí el
                         comentario…</label></li>
                     <li><input type="text" className="fecha admin" name="fecha"
                                placeholder="Fecha (AAAA-MM-DD)" autoComplete="off" autoCorrect="off"
-                               autoCapitalize="off" spellCheck="false" onChange={(e) => setCfecha(e.target.value)}/><label>Fecha</label></li>
+                               autoCapitalize="off" spellCheck="false"
+                               onChange={(e) => setCfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
-                        <button type="submit" className="enviar boton-largo">{cexito ? <i className="mdi mdi-button">done</i> :
+                        <button type="submit" className="enviar boton-largo">{cexito ?
+                            <i className="mdi mdi-button">done</i> :
                             <span>Comentar</span>}</button>
                     </li>
                 </ul>
