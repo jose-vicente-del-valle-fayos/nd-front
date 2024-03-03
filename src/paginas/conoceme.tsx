@@ -25,7 +25,7 @@ const Conoceme = () => {
                 <p>Sin embargo, sigo sin saber quien soy. Por eso <strong>compongo mis letras en <Link to={"/"}>un diario</Link> que pretende traer a la luz los tesoros dorados de mi inocencia perdida</strong>.</p>
                 <p>Ahora, el cuidado de uno mismo, la familia, los proyectos personales, las lecturas eternas y el descanso diario ocupan mi tiempo. Y ese tiempo soy yo, liberado del juicio. <strong>Convertido en una persona normal, ocupada —eso sí— en asuntos extraordinarios</strong>.</p>
                 <p><em>Dicen que la vida es eso que pasa mientras haces otros planes. Y no se me ocurre mejor plan que disfrutar las pequeñas cosas, pues en ellas está la clave de una vida bien aprovechada.</em></p>
-                <p>Si necesitas saber algo más sobre mí, si quieres conocerme o si simplemente me quieres saludar, <Link to="#" className="sin-subrayar" onClick={enviarCorreo}>escríbeme un mensaje</Link>.</p>
+                <p>Si necesitas saber algo más sobre mí, si quieres conocerme o si simplemente me quieres saludar, <Link to="#" onClick={enviarCorreo}>escríbeme un mensaje</Link>.</p>
             </article>
             <Pie/>
         </motion.main>
