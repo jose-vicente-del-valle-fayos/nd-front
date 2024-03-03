@@ -1001,7 +1001,7 @@ footer {
   float: left;
   position: relative;
   background-color: $color-transparente;
-  margin-bottom: $altura-linea * $proporcion-mas-dos-tercios;
+  margin-bottom: $altura-linea * $proporcion-dos-tercios;
   border-top: 1px dashed $color-gris-muy-claro; @media (prefers-color-scheme: dark) { border-top: 1px dashed $d-color-gris-muy-claro; }
   p, h1 {
     font: $fuente-pie;
