@@ -4,6 +4,10 @@ export const variantesPagina = {
     out: { opacity: 0}
 };
 
+export const enviarCorreo = () => {
+    window.open("mailto:" + correoDestino);
+}
+
 export const baseURL = "https://api.nuestrodiario.es/"; // String(process.env.BASE_URL_BACK);
 
 export const entradasPorPagina: number = 5; // Number(process.env.ENT_POR_PAG);

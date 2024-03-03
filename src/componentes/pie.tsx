@@ -1,13 +1,8 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import {correoDestino} from "../constantes/constantes";
+import {enviarCorreo} from "../constantes/constantes";
 
 const Pie = () => {
-
-    const enviarCorreo = () => {
-        window.open("mailto:" + correoDestino);
-    }
-
     return (
         <footer>
             <p>
