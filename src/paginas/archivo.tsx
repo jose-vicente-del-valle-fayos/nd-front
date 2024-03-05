@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina, baseURL} from "../constantes/constantes";
+import {variantesPagina, baseURL, convertirFecha} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 import {Entrada} from "../modelos/entrada";
@@ -56,7 +56,7 @@ const Archivo = () => {
                 <p id="enumArchivo" className="sin-margin-bottom">
                     {(entradas && (entradas.length > 0)) ? entradas.map((entrada: Entrada, index: number) => {
                         return(
-                            <span>{entrada.fecha} · <Link to={"/entrada/" + entrada.id} className={"sin-subrayar"} key={index}>{entrada.titulo}<br/></Link></span>
+                            <span>{convertirFecha(entrada.fecha)} · <Link to={"/entrada/" + entrada.id} className={"sin-subrayar"} key={index}>{entrada.titulo}<br/></Link></span>
                         );
                     }) : "" }
                     </p>

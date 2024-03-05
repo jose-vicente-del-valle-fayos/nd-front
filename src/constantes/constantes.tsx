@@ -6,7 +6,11 @@ export const variantesPagina = {
 
 export const enviarCorreo = () => {
     window.open("mailto:" + correoDestino);
-}
+};
+
+export const convertirFecha = (str: string) => {
+    return new Date(str).toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" });
+};
 
 export const baseURL = "https://api.nuestrodiario.es/"; // String(process.env.BASE_URL_BACK);
 
