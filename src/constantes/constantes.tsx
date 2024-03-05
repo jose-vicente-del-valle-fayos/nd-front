@@ -8,8 +8,12 @@ export const enviarCorreo = () => {
     window.open("mailto:" + correoDestino);
 };
 
-export const convertirFecha = (str: string) => {
-    return new Date(str).toLocaleDateString("es-ES", { year: "numeric", month: "short", day: "numeric" });
+export const convertirFecha = (str: string, short: boolean) => {
+    if(short) {
+        return new Date(str).toLocaleDateString("es-ES", {year: "numeric", month: "short", day: "numeric"});
+    } else {
+        return new Date(str).toLocaleDateString("es-ES", {year: "numeric", month: "long", day: "numeric"});
+    }
 };
 
 export const baseURL = "https://api.nuestrodiario.es/"; // String(process.env.BASE_URL_BACK);

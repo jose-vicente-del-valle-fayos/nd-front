@@ -73,13 +73,13 @@ const Entrada = () => {
             {(entradas && (entradas.length > 0)) ?
                 <article>
                     <h2><Link to={"/entrada/" + entradas[0].id}>{entradas[0].titulo}</Link></h2>
-                    <h3>{convertirFecha(entradas[0].fecha)} · {entradas[0].usuario} · {entradas[0].total_com === 0 ? "sin comentarios" : (entradas[0].total_com === 1 ? "1 comentario" : (entradas[0].total_com + " comentarios"))} · {entradas[0].visitas} visitas{usuario.id !== 0 ? <span> · <Link to={"#"} onClick={eliminarEntrada}>eliminar</Link></span> : ""}<span
+                    <h3>{convertirFecha(entradas[0].fecha, true)} · {entradas[0].usuario} · {entradas[0].total_com === 0 ? "sin comentarios" : (entradas[0].total_com === 1 ? "1 comentario" : (entradas[0].total_com + " comentarios"))} · {entradas[0].visitas} visitas{usuario.id !== 0 ? <span> · <Link to={"#"} onClick={eliminarEntrada}>eliminar</Link></span> : ""}<span
                         className="alineado-derecha"><Link to={"/"} title="Volver atrás"><i className="mdi">arrow_back</i></Link></span></h3>
                     <Markdown>{entradas[0].contenido}</Markdown>
                     {(entradas[0].total_com > 0) ? entradas[0].comentarios.map((comentario: Comentario, index: number) => {
                         return (
                             <div className={"comentario"} key={index}>
-                                <h3>{convertirFecha(comentario.fecha)} · {comentario.usuario} · id{comentario.id}{usuario.id !== 0 ? <span> · <Link to={"#"} onClick={() => eliminarComentario(comentario.id)}>eliminar</Link></span> : ""}</h3>
+                                <h3>{convertirFecha(comentario.fecha, true)} · {comentario.usuario} · id{comentario.id}{usuario.id !== 0 ? <span> · <Link to={"#"} onClick={() => eliminarComentario(comentario.id)}>eliminar</Link></span> : ""}</h3>
                                 <Markdown>{comentario.comentario}</Markdown>
                             </div>
                         );

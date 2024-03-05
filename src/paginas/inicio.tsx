@@ -40,14 +40,14 @@ const Inicio = () => {
                 return (
                     <article key={index}>
                         <h2><Link to={"/entrada/" + entrada.id}>{entrada.titulo}</Link></h2>
-                        <h3>{convertirFecha(entrada.fecha)} · {entrada.usuario} · {entrada.total_com === 0 ? "sin comentarios" : (entrada.total_com === 1 ? "1 comentario" : (entrada.total_com + " comentarios"))}<span
+                        <h3>{convertirFecha(entrada.fecha, true)} · {entrada.usuario} · {entrada.total_com === 0 ? "sin comentarios" : (entrada.total_com === 1 ? "1 comentario" : (entrada.total_com + " comentarios"))}<span
                             className="alineado-derecha"><Link to={"/entrada/" + entrada.id} title="Copiar enlace"><i
                             className="mdi">link</i></Link></span></h3>
                         <Markdown>{entrada.contenido}</Markdown>
                         {(entrada.total_com > 0) ? entrada.comentarios.map((comentario: Comentario, index: number) => {
                             return (
                                 <div className={"comentario"} key={index}>
-                                    <h3>{convertirFecha(comentario.fecha)} · {comentario.usuario}</h3>
+                                    <h3>{convertirFecha(comentario.fecha, true)} · {comentario.usuario}</h3>
                                     <Markdown>{comentario.comentario}</Markdown>
                                 </div>
                             );

@@ -56,7 +56,7 @@ const Archivo = () => {
                 <p id="enumArchivo" className="sin-margin-bottom">
                     {(entradas && (entradas.length > 0)) ? entradas.map((entrada: Entrada, index: number) => {
                         return(
-                            <span>{convertirFecha(entrada.fecha)} · <Link to={"/entrada/" + entrada.id} className={"sin-subrayar"} key={index}>{entrada.titulo}<br/></Link></span>
+                            <span>{convertirFecha(entrada.fecha, false)} · <Link to={"/entrada/" + entrada.id} className={"sin-subrayar"} key={index}>{entrada.titulo}<br/></Link></span>
                         );
                     }) : "" }
                     </p>
