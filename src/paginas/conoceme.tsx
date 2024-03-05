@@ -6,7 +6,7 @@ import Pie from "../componentes/pie";
 
 const Conoceme = () => {
     useEffect(() => {
-        document.title = "Nuestro Diario · Conóceme";
+        document.title = "Nuestro Diario • Conóceme";
     }, []);
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>

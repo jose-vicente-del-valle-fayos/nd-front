@@ -6,7 +6,7 @@ import axios from "axios";
 
 const Acceso = () => {
     useEffect(() => {
-        document.title = "Nuestro Diario · Acceso";
+        document.title = "Nuestro Diario • Acceso";
     });
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");

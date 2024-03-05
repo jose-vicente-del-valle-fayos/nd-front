@@ -72,7 +72,7 @@ const Administracion = () => {
     }
 
     useEffect(() => {
-        document.title = "Nuestro Diario · Administración";
+        document.title = "Nuestro Diario • Administración";
         (
             async () => {
                 try {

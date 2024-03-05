@@ -6,7 +6,7 @@ import Pie from "../componentes/pie";
 
 const Privacidad = () => {
     useEffect(() => {
-        document.title = "Nuestro Diario · Privacidad";
+        document.title = "Nuestro Diario • Privacidad";
     }, []);
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>

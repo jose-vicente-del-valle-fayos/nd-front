@@ -13,7 +13,7 @@ const Escribeme = () => {
     const [mexito, setMexito] = useState(false);
 
     useEffect(() => {
-        document.title = "Nuestro Diario · Escríbeme";
+        document.title = "Nuestro Diario • Escríbeme";
     }, []);
 
     const enviarCorreo = async (e: SyntheticEvent) => {

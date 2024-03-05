@@ -6,7 +6,7 @@ import Pie from "../componentes/pie";
 
 const Aviso = () => {
     useEffect(() => {
-        document.title = "Nuestro Diario · Aviso";
+        document.title = "Nuestro Diario • Aviso";
     }, []);
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
