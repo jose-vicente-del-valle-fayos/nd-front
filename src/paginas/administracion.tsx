@@ -36,7 +36,6 @@ const Administracion = () => {
                 fecha: efecha,
                 contenido: econtenido
             };
-            console.log(nuevaEntrada);
             if(eid === 0) {
                 await axios.post(baseURL + "entrada", nuevaEntrada);
                 setEexito(true);
