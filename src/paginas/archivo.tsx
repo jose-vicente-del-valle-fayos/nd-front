@@ -34,7 +34,6 @@ const Archivo = () => {
             let entFilt = entini.current.filter(ent => {
                 return ent.fecha.includes(palabra) ||
                     ent.titulo.includes(palabra) ||
-                    ent.usuario.includes(palabra) ||
                     ent.contenido.includes(palabra);
             });
             setEntradas(entFilt);
