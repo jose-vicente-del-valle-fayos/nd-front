@@ -16,14 +16,14 @@ const Administracion = () => {
     const [etitulo, setEtitulo] = useState("");
     const [efecha, setEfecha] = useState("2006-01-02");
     const [econtenido, setEcontenido] = useState("");
-    const [eexito, setEexito] = useState(false);
+    const [eexito, setEexito] = useState("normal");
     const [cid, setCid] = useState(0);
     const [cident, setCident] = useState(0);
     const [cusuario, setCusuario] = useState("");
     const [ccorreo, setCcorreo] = useState("anonimo");
     const [cfecha, setCfecha] = useState("2006-01-02");
     const [ccomentario, setCcomentario] = useState("");
-    const [cexito, setCexito] = useState(false);
+    const [cexito, setCexito] = useState("normal");
 
     const crearActualizarEntrada = async (e: SyntheticEvent) => {
         e.preventDefault();
@@ -37,11 +37,13 @@ const Administracion = () => {
                 contenido: econtenido
             };
             if(eid === 0) {
-                await axios.post(baseURL + "entrada", nuevaEntrada);
-                setEexito(true);
+                let { data } = await axios.post(baseURL + "entrada", nuevaEntrada);
+                if( data.mensaje ) { setEexito("error"); }
+                else { setEexito("enviado"); }
             } else {
-                await axios.put(baseURL + "entrada/" + eid, nuevaEntrada);
-                setEexito(true);
+                let { data } = await axios.put(baseURL + "entrada/" + eid, nuevaEntrada);
+                if( data.mensaje ) { setEexito("error"); }
+                else { setEexito("enviado"); }
             }
         } catch (e) {
             console.log(e);
@@ -59,11 +61,13 @@ const Administracion = () => {
                 comentario: ccomentario
             };
             if(cid === 0) {
-                await axios.post(baseURL + "comentario", nuevoComentario);
-                setCexito(true);
+                let {data} =  await axios.post(baseURL + "comentario", nuevoComentario);
+                if(data.mensaje) { setCexito("error"); }
+                else { setCexito("enviado"); }
             } else {
-                await axios.put(baseURL + "comentario/" + cid, nuevoComentario);
-                setCexito(true);
+                let {data} =  await axios.put(baseURL + "comentario/" + cid, nuevoComentario);
+                if(data.mensaje) { setCexito("error"); }
+                else { setCexito("enviado"); }
             }
         } catch (e) {
             console.log(e);
@@ -96,11 +100,11 @@ const Administracion = () => {
     if(redirigir) {
         return <Navigate to={"/acceso"}/>;
     }
-    if(eexito) {
-        setTimeout(() => {setEexito(false)}, 3000);
+    if(eexito == "enviado" || eexito == "error") {
+        setTimeout(() => {setEexito("normal")}, 3000);
     }
-    if(cexito) {
-        setTimeout(() => {setCexito(false)}, 3000);
+    if(cexito == "enviado" || cexito == "error") {
+        setTimeout(() => {setCexito("normal")}, 3000);
     }
 
     return (
@@ -142,9 +146,8 @@ const Administracion = () => {
                                autoCapitalize="off" spellCheck="false"
                                onChange={(e) => setEfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
-                        <button type="submit" className="enviar boton-largo"
-                                value="Publicar">{eexito ? <i className="mdi mdi-button">done</i> :
-                            <span>Publicar</span>}
+                        <button type="submit" className="enviar boton-largo" value="Publicar">
+                            {eexito == "enviado" ? <i className="mdi mdi-button">done</i> : (eexito == "error" ? <i className="mdi mdi-button">close</i> : <span> Publicar</span>)}
                         </button>
                     </li>
                 </ul>
@@ -182,9 +185,9 @@ const Administracion = () => {
                                autoCapitalize="off" spellCheck="false"
                                onChange={(e) => setCfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
-                        <button type="submit" className="enviar boton-largo">{cexito ?
-                            <i className="mdi mdi-button">done</i> :
-                            <span>Comentar</span>}</button>
+                        <button type="submit" className="enviar boton-largo">
+                            {cexito == "enviado" ? <i className="mdi mdi-button">done</i> : (cexito == "error" ? <i className="mdi mdi-button">close</i> : <span> Publicar</span>)}
+                        </button>
                     </li>
                 </ul>
             </form>
