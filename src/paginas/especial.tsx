@@ -6,7 +6,7 @@ import Pie from "../componentes/pie";
 import axios from "axios";
 import {Entrada} from "../modelos/entrada";
 import {Comentario} from "../modelos/comentario";
-import Markdown from "react-markdown";
+import Markdown from "@ipikuka/react-markdown";
 
 const Especial = () => {
     const [entradas, setEntradas] = useState<any[]>([]);
