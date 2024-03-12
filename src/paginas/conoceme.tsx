@@ -12,11 +12,7 @@ const Conoceme = () => {
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
             <article>
                 <h2>Conóceme</h2>
-                <h3>José Vicente del Valle Fayos
-                    <span className="alineado-derecha">
-                        <Link to={"/"} title="Volver atrás"><i className="mdi">arrow_back</i></Link>
-                    </span>
-                </h3>
+                <h3>José Vicente del Valle Fayos</h3>
                 <p>Crecí en un pequeño pueblo del interior de Valencia donde <strong>mis maestros me enseñaron a
                     distinguir lo bueno de lo malo</strong>. Como no quería ser malo, empecé a comportarme como si fuera otro. Y ahora no sé quien soy.</p>
                 <p>Ya en el instituto, <strong>intenté llenar el vacío de mi identidad olvidada con la presencia de una chica que renegaba de mí</strong>. Y así acabé en la consulta del especialista.</p>
