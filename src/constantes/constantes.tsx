@@ -16,7 +16,7 @@ export const convertirFecha = (str: string, short: boolean) => {
     }
 };
 
-export function smartypants(input: string) {
+export const smartypants = (input: string) => {
     const ellipsisReplaced: string = input.replace(/\.\.\./g, "…");
     const emDashReplaced: string = ellipsisReplaced.replace(/---/g, "—");
     const curlyQuotesReplaced: string = emDashReplaced.replace(/"([^"]*)"/g, "“$1”");
