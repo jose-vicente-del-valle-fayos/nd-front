@@ -16,6 +16,13 @@ export const convertirFecha = (str: string, short: boolean) => {
     }
 };
 
+export function smartypants(input: string) {
+    const ellipsisReplaced: string = input.replace(/\.\.\./g, "…");
+    const emDashReplaced: string = ellipsisReplaced.replace(/---/g, "—");
+    const curlyQuotesReplaced: string = emDashReplaced.replace(/"([^"]*)"/g, "“$1”");
+    return curlyQuotesReplaced;
+}
+
 export const baseURL = "https://api.nuestrodiario.es/"; // String(process.env.BASE_URL_BACK);
 
 export const entradasPorPagina: number = 5; // Number(process.env.ENT_POR_PAG);
