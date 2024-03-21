@@ -16,7 +16,11 @@ export const convertirFecha = (str: string, short: boolean) => {
     }
 };
 
-export const smartypants = (input: string) => {
+export const anoActual = (): string => {
+    return new Date().toLocaleDateString('es-ES').slice(-4);
+}
+
+export const smartyPants = (input: string) => {
     const ellipsisReplaced: string = input.replace(/\.\.\./g, "…");
     const emDashReplaced: string = ellipsisReplaced.replace(/---/g, "—");
     const curlyQuotesReplaced: string = emDashReplaced.replace(/"([^"]*)"/g, "“$1”");
