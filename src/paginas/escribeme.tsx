@@ -11,7 +11,7 @@ const Escribeme = () => {
     const [mensaje, setMensaje] = useState("");
     const [gotcha, setGotcha] = useState("");
     const [mexito, setMexito] = useState("normal");
-    const [empiezaTiempo, setEmpiezaTiempo] = useState(Date.now() - 31 * 60 * 1000);
+    const [empiezaTiempo, setEmpiezaTiempo] = useState(Date.now() - 1800 * 1000);
     const [numEnvios, setNumEnvios] = useState(0);
 
     useEffect(() => {
@@ -30,7 +30,7 @@ const Escribeme = () => {
                 mensaje: mensaje,
                 gotcha: gotcha
             };
-            if((!nuevoCorreo.gotcha) && (tiempoEntreEnvios < 1800000) && (numEnvios < 3)) {
+            if((!nuevoCorreo.gotcha) && (tiempoEntreEnvios > 1800000) && (numEnvios < 3)) {
                 await axios.post(baseURL + "escribeme", nuevoCorreo);
                 setEmpiezaTiempo(Date.now());
                 setNombre("");
