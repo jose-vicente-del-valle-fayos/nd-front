@@ -9,6 +9,7 @@ import Especial from "./paginas/especial";
 import Conoceme from "./paginas/conoceme";
 import Archivo from "./paginas/archivo";
 import Entrada from "./paginas/entrada";
+import Escribeme from "./paginas/escribeme";
 import Acceso from "./paginas/acceso";
 import Administracion from "./paginas/administracion";
 import Aviso from "./paginas/aviso";
@@ -24,6 +25,7 @@ const AnimatedRoutes = () => {
                 <Route path={"/conoceme"} element={<Conoceme/>}/>
                 <Route path={"/archivo"} element={<Archivo/>}/>
                 <Route path={"/entrada/:id"} element={<Entrada/>}/>
+                <Route path={"/escribeme"} element={<Escribeme/>}/>
                 <Route path={"/acceso"} element={<Acceso/>}/>
                 <Route path={"/administracion"} element={<Administracion/>}/>
                 <Route path={"/aviso"} element={<Aviso/>}/>

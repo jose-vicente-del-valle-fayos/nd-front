@@ -147,7 +147,7 @@ const Administracion = () => {
                                onChange={(e) => setEfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
                         <button type="submit" className="enviar boton-largo" value="Publicar">
-                            {eexito == "enviado" ? <i className="mdi mdi-button">done</i> : (eexito == "error" ? <i className="mdi mdi-button">close</i> : <span> Publicar</span>)}
+                            {eexito == "enviado" ? <i className="mdi mdi-button">done</i> : (eexito == "error" ? <i className="mdi mdi-button">close</i> : <span>Publicar</span>)}
                         </button>
                     </li>
                 </ul>
@@ -186,7 +186,7 @@ const Administracion = () => {
                                onChange={(e) => setCfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
                         <button type="submit" className="enviar boton-largo">
-                            {cexito == "enviado" ? <i className="mdi mdi-button">done</i> : (cexito == "error" ? <i className="mdi mdi-button">close</i> : <span> Publicar</span>)}
+                            {cexito == "enviado" ? <i className="mdi mdi-button">done</i> : (cexito == "error" ? <i className="mdi mdi-button">close</i> : <span>Publicar</span>)}
                         </button>
                     </li>
                 </ul>

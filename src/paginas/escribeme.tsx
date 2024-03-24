@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {epEscribeme, variantesPagina, baseURL} from "../constantes/constantes";
+import {variantesPagina, baseURL} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 
@@ -10,7 +10,9 @@ const Escribeme = () => {
     const [correo, setCorreo] = useState("");
     const [mensaje, setMensaje] = useState("");
     const [gotcha, setGotcha] = useState("");
-    const [mexito, setMexito] = useState(false);
+    const [mexito, setMexito] = useState("normal");
+    const [empiezaTiempo, setEmpiezaTiempo] = useState(Date.now() - 31 * 60 * 1000);
+    const [numEnvios, setNumEnvios] = useState(0);
 
     useEffect(() => {
         document.title = "Nuestro Diario • Escríbeme";
@@ -19,24 +21,31 @@ const Escribeme = () => {
     const enviarCorreo = async (e: SyntheticEvent) => {
         e.preventDefault();
         try {
+            let ahoraTiempo = Date.now();
+            let tiempoEntreEnvios = ahoraTiempo - empiezaTiempo;
+            setNumEnvios(numEnvios + 1);
             let nuevoCorreo = {
                 nombre: nombre,
                 correo: correo,
                 mensaje: mensaje,
                 gotcha: gotcha
             };
-            console.log(nuevoCorreo)
-            if(!nuevoCorreo.gotcha) {
-                await axios.post(baseURL + epEscribeme, nuevoCorreo);
-                setMexito(true);
+            if((!nuevoCorreo.gotcha) && (tiempoEntreEnvios < 1800000) && (numEnvios < 3)) {
+                await axios.post(baseURL + "escribeme", nuevoCorreo);
+                setEmpiezaTiempo(Date.now());
+                setNombre("");
+                setCorreo("");
+                setMensaje("");
+                setMexito("enviado");
             }
         } catch (e) {
             console.log(e);
+            setMexito("error");
         }
     }
 
     if(mexito) {
-        setTimeout(() => {setMexito(false)}, 3000);
+        setTimeout(() => {setMexito("normal")}, 3000);
     }
 
     return (
@@ -50,12 +59,12 @@ const Escribeme = () => {
             <form onSubmit={(e) => enviarCorreo(e)}>
                 <ul className="ul-form">
                     <li><h3 className="colorgris">Escribe algo…</h3></li>
-                    <li><input type="text" className="nombre" name="nombre" placeholder="Tu nombre o apodo *" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={(e) => setNombre(e.target.value)}/><label>Tu nombre o apodo *</label></li>
-                    <li><input type="text" className="email" name="email" placeholder="Tu correo electrónico *" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={(e) => setCorreo(e.target.value)}/><label>Tu correo electrónico *</label></li>
-                    <li><textarea className="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje… *" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={(e) => setMensaje(e.target.value)}></textarea><label>Escribe aquí tu mensaje… *</label></li>
+                    <li><input type="text" className="nombre" name="nombre" placeholder="Tu nombre o apodo *" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={(e) => setNombre(e.target.value)} value={nombre}/><label>Tu nombre o apodo *</label></li>
+                    <li><input type="text" className="email" name="email" placeholder="Tu correo electrónico *" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={(e) => setCorreo(e.target.value)} value={correo}/><label>Tu correo electrónico *</label></li>
+                    <li><textarea className="mensaje" name="mensaje" placeholder="Escribe aquí tu mensaje… *" autoComplete="off" autoCorrect="off" autoCapitalize="off" spellCheck="false" onChange={(e) => setMensaje(e.target.value)} value={mensaje}></textarea><label>Escribe aquí tu mensaje… *</label></li>
                     <li><label className="contenedor-label noetiquetaflotante" htmlFor="privacidad"><input type="checkbox" id="privacidad" className="especial admin" name="privacidad"/><span className="checkmark left-cero"></span><h3 className="displayinline colorgris">Entiendo y acepto la <em><Link to={"/privacidad"}>Política de Privacidad</Link></em>.</h3></label></li>
                     <li className="invisible"><input type="hidden" name="gotcha" onChange={(e) => setGotcha(e.target.value)}/></li>
-                    <li><button type="submit">{mexito ? <i className="mdi mdi-button">done</i> : <span>Enviar</span>}</button>
+                    <li><button type="submit">{mexito == "enviado" ? <i className="mdi mdi-button">done</i> : (mexito == "error" ? <i className="mdi mdi-button">close</i> : <span>Enviar</span>)}</button>
                     </li>
                 </ul>
             </form>
