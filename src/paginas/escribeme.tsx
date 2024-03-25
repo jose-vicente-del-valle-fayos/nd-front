@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina, baseURL} from "../constantes/constantes";
+import {variantesPagina} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 
@@ -12,7 +12,7 @@ const Escribeme = () => {
     const [privacidad, setPrivacidad] = useState(false);
     const [gotcha, setGotcha] = useState("");
     const [mexito, setMexito] = useState("normal");
-    const [empiezaTiempo, setEmpiezaTiempo] = useState(Date.now() - 1800 * 1000);
+    const [empiezaTiempo, setEmpiezaTiempo] = useState(Date.now() - parseInt(String(process.env.REACT_APP_CORREO_TIMEOUT), 10) * 1000);
     const [numEnvios, setNumEnvios] = useState(0);
 
     useEffect(() => {
@@ -31,8 +31,8 @@ const Escribeme = () => {
                 mensaje: mensaje,
                 gotcha: gotcha
             };
-            if((!nuevoCorreo.gotcha) && (tiempoEntreEnvios > (1800 * 1000)) && (numEnvios < 3) && privacidad) {
-                await axios.post(baseURL + "escribeme", nuevoCorreo);
+            if((!nuevoCorreo.gotcha) && (tiempoEntreEnvios > (parseInt(String(process.env.REACT_APP_CORREO_TIMEOUT), 10) * 1000)) && (numEnvios < 3) && privacidad) {
+                await axios.post(process.env.REACT_APP_BASE_URL + "escribeme", nuevoCorreo);
                 setEmpiezaTiempo(Date.now());
                 setNombre("");
                 setCorreo("");

@@ -1,7 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina, baseURL, convertirFecha} from "../constantes/constantes";
+import {variantesPagina, convertirFecha} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 import {Entrada} from "../modelos/entrada";
@@ -16,7 +16,7 @@ const Archivo = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get(baseURL + "todas");
+                    const {data} = await axios.get(process.env.REACT_APP_BASE_URL + "todas");
                     entini.current = data.datos;
                     if(!cargado.current) {
                         setEntradas(data.datos)

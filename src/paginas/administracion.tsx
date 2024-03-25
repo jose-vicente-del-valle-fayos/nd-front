@@ -1,8 +1,8 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {motion} from "framer-motion";
-import {variantesPagina, baseURL} from "../constantes/constantes";
 import axios from "axios";
 import {Navigate} from "react-router-dom";
+import {variantesPagina} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import {Usuario} from "../modelos/usuario";
 
@@ -37,11 +37,11 @@ const Administracion = () => {
                 contenido: econtenido
             };
             if(eid === 0) {
-                let { data } = await axios.post(baseURL + "entrada", nuevaEntrada);
+                let { data } = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", nuevaEntrada);
                 if( data.mensaje ) { setEexito("error"); }
                 else { setEexito("enviado"); }
             } else {
-                let { data } = await axios.put(baseURL + "entrada/" + eid, nuevaEntrada);
+                let { data } = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, nuevaEntrada);
                 if( data.mensaje ) { setEexito("error"); }
                 else { setEexito("enviado"); }
             }
@@ -61,11 +61,11 @@ const Administracion = () => {
                 comentario: ccomentario
             };
             if(cid === 0) {
-                let {data} =  await axios.post(baseURL + "comentario", nuevoComentario);
+                let {data} =  await axios.post(process.env.REACT_APP_BASE_URL + "comentario", nuevoComentario);
                 if(data.mensaje) { setCexito("error"); }
                 else { setCexito("enviado"); }
             } else {
-                let {data} =  await axios.put(baseURL + "comentario/" + cid, nuevoComentario);
+                let {data} =  await axios.put(process.env.REACT_APP_BASE_URL + "comentario/" + cid, nuevoComentario);
                 if(data.mensaje) { setCexito("error"); }
                 else { setCexito("enviado"); }
             }
@@ -79,7 +79,7 @@ const Administracion = () => {
         (
             async () => {
                 try {
-                    const {data} = await axios.get(baseURL + "usuario");
+                    const {data} = await axios.get(process.env.REACT_APP_BASE_URL + "usuario");
                     setUsuario(new Usuario(
                         data.id,
                         data.sobrenombre,

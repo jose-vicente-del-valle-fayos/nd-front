@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {Navigate} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina, baseURL} from "../constantes/constantes";
+import {variantesPagina} from "../constantes/constantes";
 import axios from "axios";
 
 const Acceso = () => {
@@ -17,7 +17,7 @@ const Acceso = () => {
     const ingresar = async (e: SyntheticEvent) => {
         e.preventDefault();
         try {
-            await axios.post(baseURL + "ingresar", {
+            await axios.post(process.env.REACT_APP_BASE_URL + "ingresar", {
                 "correo": correo,
                 "contrasena": contrasena
             });
@@ -31,7 +31,7 @@ const Acceso = () => {
         e.preventDefault();
         try {
             setSexito(true);
-            await axios.post(baseURL + "salir");
+            await axios.post(process.env.REACT_APP_BASE_URL + "salir");
         } catch(e) {
             return(e);
         }

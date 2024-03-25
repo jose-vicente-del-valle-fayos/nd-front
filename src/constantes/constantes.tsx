@@ -5,7 +5,7 @@ export const variantesPagina = {
 };
 
 export const enviarCorreo = () => {
-    window.open("mailto:" + correoDestino);
+    window.open("mailto:" + process.env.REACT_APP_CORREO_DESTINO);
 };
 
 export const convertirFecha = (str: string, short: boolean) => {
@@ -26,8 +26,3 @@ export const smartyPants = (input: string) => {
     const curlyQuotesReplaced: string = emDashReplaced.replace(/"([^"]*)"/g, "“$1”");
     return curlyQuotesReplaced;
 }
-
-export const baseURL = "https://api.nuestrodiario.es/"; // String(process.env.BASE_URL_BACK);
-
-export const entradasPorPagina: number = 5; // Number(process.env.ENT_POR_PAG);
-export const correoDestino: string = "musheres.dioxinas.0p@icloud.com"; // String(process.env.CORREO_DEST);

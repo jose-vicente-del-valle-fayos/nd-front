@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {entradasPorPagina, variantesPagina, baseURL, convertirFecha, smartyPants} from "../constantes/constantes";
+import {variantesPagina, convertirFecha, smartyPants} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 import {Entrada} from "../modelos/entrada";
@@ -16,7 +16,7 @@ const Especial = () => {
 
     const cargaMas = async () => {
         try {
-            const {data} = await axios.get(baseURL + "entradas?limite=" + entradasPorPagina + "&especial=true&pagina=" + pagina);
+            const {data} = await axios.get(process.env.REACT_APP_BASE_URL + "entradas?limite=" + process.env.REACT_APP_ENTRADAS_POR_PAGINA + "&especial=true&pagina=" + pagina);
             setEntradas([...entradas, ...data.datos]);
             setTotal(data.meta.total);
         } catch(e) {
