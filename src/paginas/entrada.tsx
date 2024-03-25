@@ -10,9 +10,10 @@ import Markdown from "react-markdown";
 import remarkTextr from "remark-textr";
 
 const Entrada = () => {
-    const [entradas, setEntradas] = useState<any[]>([]);
+    const [entrada, setEntrada] = useState<any>();
     const [usuario, setUsuario] = useState(new Usuario());
-    const [redirigir, setRedirigir] = useState(false);
+    const [redirigirInicio, setRedirigirInicio] = useState("normal");
+    const [redirigirError, setRedirigirError] = useState("normal");
     const params = useParams();
 
     useEffect( () => {
@@ -21,8 +22,11 @@ const Entrada = () => {
             async () => {
                 try {
                     const {data} = await axios.get(process.env.REACT_APP_BASE_URL + "entrada/" + params.id);
-                    setEntradas([data.datos]);
-                } catch (e) {
+                    if(data.datos !== undefined) {
+                        data.datos.id === 0 ? setRedirigirError("activado") : setRedirigirError("desactivado");
+                        setEntrada(data.datos);
+                    }
+                } catch(e) {
                     console.log(e);
                 }
             }
@@ -40,8 +44,7 @@ const Entrada = () => {
                         data.entradas,
                         data.total_ent,
                     ));
-                } catch (e) {
-                    setUsuario(new Usuario());
+                } catch(e) {
                 }
             }
         )();
@@ -49,8 +52,8 @@ const Entrada = () => {
 
     const eliminarEntrada = async () => {
         try {
-            await axios.delete(process.env.REACT_APP_BASE_URL + "entrada/" + entradas[0].id);
-            setRedirigir(true);
+            await axios.delete(process.env.REACT_APP_BASE_URL + "entrada/" + entrada.id);
+            setRedirigirInicio("activado");
         } catch (e) {
             console.log(e);
         }
@@ -59,33 +62,42 @@ const Entrada = () => {
     const eliminarComentario = async (id: number) => {
         try {
             await axios.delete(process.env.REACT_APP_BASE_URL + "comentario/" + id);
-            setRedirigir(true);
+            setRedirigirInicio("activado");
         } catch (e) {
             console.log(e);
         }
     }
 
-    if(redirigir) {
+    if(redirigirInicio === "activado") {
         return <Navigate to={"/"}/>;
+    }
+
+    if(redirigirError == "activado") {
+        return <Navigate to={"/error"}/>;
     }
 
     return (
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
-            {(entradas && (entradas.length > 0)) ?
+            {entrada !== undefined && redirigirInicio !== "activado" && redirigirError !== "activado" && redirigirError !== "normal" ?
                 <article>
-                    <h2><Link to={"/entrada/" + entradas[0].id}>{entradas[0].titulo}</Link></h2>
-                    <h3>{convertirFecha(entradas[0].fecha, true)} • {entradas[0].total_com === 0 ? "sin comentarios" : (entradas[0].total_com === 1 ? "1 comentario" : (entradas[0].total_com + " comentarios"))} • {entradas[0].visitas === 0 ? "sin visitas" : (entradas[0].visitas === 1 ? "1 visita" : (entradas[0].visitas + " visitas"))}{usuario.id !== 0 ? <span> • <Link to={"#"} onClick={eliminarEntrada}>eliminar</Link></span> : ""}</h3>
-                    <Markdown remarkPlugins={[[remarkTextr, {plugins: [smartyPants]}]]}>{entradas[0].contenido}</Markdown>
-                    {(entradas[0].total_com > 0) ? entradas[0].comentarios.map((comentario: Comentario, index: number) => {
+                    <h2><Link to={"/entrada/" + entrada.id}>{entrada.titulo}</Link></h2>
+                    <h3>{convertirFecha(entrada.fecha, true)} • {entrada.total_com === 0 ? "sin comentarios" : (entrada.total_com === 1 ? "1 comentario" : (entrada.total_com + " comentarios"))} • {entrada.visitas === 0 ? "sin visitas" : (entrada.visitas === 1 ? "1 visita" : (entrada.visitas + " visitas"))}{usuario.id !== 0 ?
+                        <span> • <Link to={"#"} onClick={eliminarEntrada}>eliminar</Link></span> : ""}</h3>
+                    <Markdown
+                        remarkPlugins={[[remarkTextr, {plugins: [smartyPants]}]]}>{entrada.contenido}</Markdown>
+                    {(entrada.total_com > 0) ? entrada.comentarios.map((comentario: Comentario, index: number) => {
                         return (
                             <div className={"comentario"} key={index}>
-                                <h3>{convertirFecha(comentario.fecha, true)} • {comentario.usuario} • id{comentario.id}{usuario.id !== 0 ? <span> • <Link to={"#"} onClick={() => eliminarComentario(comentario.id)}>eliminar</Link></span> : ""}</h3>
-                                <Markdown remarkPlugins={[[remarkTextr, {plugins: [smartyPants]}]]}>{comentario.comentario}</Markdown>
+                                <h3>{convertirFecha(comentario.fecha, true)} • {comentario.usuario} •
+                                    id{comentario.id}{usuario.id !== 0 ? <span> • <Link to={"#"}
+                                                                                        onClick={() => eliminarComentario(comentario.id)}>eliminar</Link></span> : ""}</h3>
+                                <Markdown
+                                    remarkPlugins={[[remarkTextr, {plugins: [smartyPants]}]]}>{comentario.comentario}</Markdown>
                             </div>
                         );
                     }) : ""}
                 </article>
-            : ""}
+                : ""}
             <Pie/>
         </motion.main>
     )

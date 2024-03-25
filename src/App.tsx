@@ -14,6 +14,7 @@ import Acceso from "./paginas/acceso";
 import Administracion from "./paginas/administracion";
 import Aviso from "./paginas/aviso";
 import Privacidad from "./paginas/privacidad";
+import Error from "./paginas/error";
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -30,6 +31,7 @@ const AnimatedRoutes = () => {
                 <Route path={"/administracion"} element={<Administracion/>}/>
                 <Route path={"/aviso"} element={<Aviso/>}/>
                 <Route path={"/privacidad"} element={<Privacidad/>}/>
+                <Route path={"*"} element={<Error/>}/>
             </Routes>
         </AnimatePresence>
     );
