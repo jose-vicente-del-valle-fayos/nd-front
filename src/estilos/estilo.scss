@@ -687,7 +687,6 @@ main {
     }
   }
   form {
-    margin-bottom: 2 * $altura-linea;
     &.filtrar-especial ul.ul-form li:first-child { margin-top: 0; label { font: $h3; } }
     ul.ul-form {
       margin-left: 0;
