@@ -4,4 +4,3 @@ Disallow: /administracion
 Disallow: /acceso
 Disallow: /aviso
 Disallow: /privacidad
-Disallow: /escribeme
