@@ -31,7 +31,7 @@ const Escribeme = () => {
                 mensaje: mensaje,
                 gotcha: gotcha
             };
-            if((!nuevoCorreo.gotcha) && (tiempoEntreEnvios > (parseInt(String(process.env.REACT_APP_CORREO_TIMEOUT), 10) * 1000)) && (numEnvios < 3) && privacidad) {
+            if((!nuevoCorreo.gotcha) && (tiempoEntreEnvios > (parseInt(String(process.env.REACT_APP_CORREO_TIMEOUT), 10) * 1000)) && (numEnvios < parseInt(String(process.env.REACT_APP_CORREO_MAX_ENVIOS), 10)) && privacidad) {
                 await axios.post(process.env.REACT_APP_BASE_URL + "escribeme", nuevoCorreo);
                 setEmpiezaTiempo(Date.now());
                 setNombre("");
