@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './estilos/estilo.scss';
-import {BrowserRouter, Routes, Route, useLocation, useNavigate} from "react-router-dom"
-import { AnimatePresence } from "framer-motion";
+import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
+import {AnimatePresence} from "framer-motion";
 import Menu from "./componentes/menu";
 import Cabecera from "./componentes/cabecera";
+import Redirige from "./componentes/redirige";
 import Inicio from "./paginas/inicio";
 import Especial from "./paginas/especial";
 import Conoceme from "./paginas/conoceme";
@@ -15,6 +16,7 @@ import Administracion from "./paginas/administracion";
 import Aviso from "./paginas/aviso";
 import Privacidad from "./paginas/privacidad";
 import Error from "./paginas/error";
+
 
 const AnimatedRoutes = () => {
     const location = useLocation();
@@ -38,14 +40,10 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
-    const [dom] = useState(process.env.REACT_APP_DOMINIO_PERMITIDO);
-    const navigate = useNavigate();
-    useEffect(() => {
-        if(dom !== window.location.hostname) {
-            navigate(String(dom), {replace: true});
-        }
-    }, [dom])
+    const [dom] = useState(String(process.env.REACT_APP_DOMINIO_PERMITIDO));
     return (
+        dom !== window.location.hostname ?
+        <Redirige url={"https://" + dom}/> :
         <div className="App">
             <BrowserRouter>
                 <Cabecera/>
