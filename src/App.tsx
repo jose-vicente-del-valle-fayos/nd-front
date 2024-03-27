@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './estilos/estilo.scss';
 import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
 import { AnimatePresence } from "framer-motion";
@@ -37,15 +37,25 @@ const AnimatedRoutes = () => {
     );
 };
 
-function App() {
+const App = () => {
+    const [dom] = useState(process.env.REACT_APP_DOMINIOS_PERMITIDOS)
     return (
-        <div className="App">
-            <BrowserRouter>
-                <Cabecera/>
-                <Menu/>
-                <AnimatedRoutes/>
-            </BrowserRouter>
-        </div>
+        String(dom).includes(window.location.hostname) ?
+            <div className="App">
+                <BrowserRouter>
+                    <Cabecera/>
+                    <Menu/>
+                    <AnimatedRoutes/>
+                </BrowserRouter>
+            </div>
+            :
+            <div className="App">
+                <BrowserRouter>
+                    <Cabecera/>
+                    <Menu/>
+                    <Error/>
+                </BrowserRouter>
+            </div>
     );
 }
 
