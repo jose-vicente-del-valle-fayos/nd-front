@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './estilos/estilo.scss';
-import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
+import {BrowserRouter, Routes, Route, useLocation, useNavigate} from "react-router-dom"
 import { AnimatePresence } from "framer-motion";
 import Menu from "./componentes/menu";
 import Cabecera from "./componentes/cabecera";
@@ -38,24 +38,21 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => {
-    const [dom] = useState(process.env.REACT_APP_DOMINIOS_PERMITIDOS)
+    const [dom] = useState(process.env.REACT_APP_DOMINIO_PERMITIDO);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if(dom !== window.location.hostname) {
+            navigate(String(dom), {replace: true});
+        }
+    }, [dom])
     return (
-        String(dom).includes(window.location.hostname) ?
-            <div className="App">
-                <BrowserRouter>
-                    <Cabecera/>
-                    <Menu/>
-                    <AnimatedRoutes/>
-                </BrowserRouter>
-            </div>
-            :
-            <div className="App">
-                <BrowserRouter>
-                    <Cabecera/>
-                    <Menu/>
-                    <Error/>
-                </BrowserRouter>
-            </div>
+        <div className="App">
+            <BrowserRouter>
+                <Cabecera/>
+                <Menu/>
+                <AnimatedRoutes/>
+            </BrowserRouter>
+        </div>
     );
 }
 
