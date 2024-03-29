@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useLayoutEffect} from 'react';
 import './estilos/estilo.scss';
 import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
 import {AnimatePresence} from "framer-motion";
@@ -17,24 +17,33 @@ import Aviso from "./paginas/aviso";
 import Privacidad from "./paginas/privacidad";
 import Error from "./paginas/error";
 
+const Wrapper = ({children}: any) => {
+    const location = useLocation();
+    useLayoutEffect(() => {
+        document.documentElement.scrollTo(0, 0);
+    }, [location.pathname]);
+    return children;
+};
 
 const AnimatedRoutes = () => {
     const location = useLocation();
     return (
         <AnimatePresence>
-            <Routes location={location} key={location.pathname}>
-                <Route path={"/"} element={<Inicio/>}/>
-                <Route path={"/especial"} element={<Especial/>}/>
-                <Route path={"/conoceme"} element={<Conoceme/>}/>
-                <Route path={"/archivo"} element={<Archivo/>}/>
-                <Route path={"/entrada/:id"} element={<Entrada/>}/>
-                <Route path={"/escribeme"} element={<Escribeme/>}/>
-                <Route path={"/acceso"} element={<Acceso/>}/>
-                <Route path={"/administracion"} element={<Administracion/>}/>
-                <Route path={"/aviso"} element={<Aviso/>}/>
-                <Route path={"/privacidad"} element={<Privacidad/>}/>
-                <Route path={"*"} element={<Error/>}/>
-            </Routes>
+            <Wrapper>
+                <Routes location={location} key={location.pathname}>
+                    <Route path={"/"} element={<Inicio/>}/>
+                    <Route path={"/especial"} element={<Especial/>}/>
+                    <Route path={"/conoceme"} element={<Conoceme/>}/>
+                    <Route path={"/archivo"} element={<Archivo/>}/>
+                    <Route path={"/entrada/:id"} element={<Entrada/>}/>
+                    <Route path={"/escribeme"} element={<Escribeme/>}/>
+                    <Route path={"/acceso"} element={<Acceso/>}/>
+                    <Route path={"/administracion"} element={<Administracion/>}/>
+                    <Route path={"/aviso"} element={<Aviso/>}/>
+                    <Route path={"/privacidad"} element={<Privacidad/>}/>
+                    <Route path={"*"} element={<Error/>}/>
+                </Routes>
+            </Wrapper>
         </AnimatePresence>
     );
 };
