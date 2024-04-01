@@ -1,10 +1,10 @@
 export const variantesPagina = {
-    initial: { opacity: 0 },
-    in: { opacity: 1 },
-    out: { opacity: 0}
+    initial: { opacity: 0, transition: { duration: 0.3, delay: 0.6 } },
+    in: { opacity: 1, transition: { duration: 0.3, delay: 0.6 } },
+    out: { opacity: 0, transition: { duration: 0.3, delay: 0.6 }}
 };
 
-export const enviarCorreo = () => {
+export const enviarCorreoEnlace = () => {
     window.open("mailto:" + process.env.REACT_APP_CORREO_DESTINO);
 };
 

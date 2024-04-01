@@ -1,7 +1,7 @@
 import React, {SyntheticEvent, useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import {motion} from "framer-motion";
-import {variantesPagina} from "../constantes/constantes";
+import {variantesPagina, enviarCorreoEnlace} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import axios from "axios";
 
@@ -55,9 +55,9 @@ const Escribeme = () => {
         <motion.main initial="initial" animate="in" exit="out" variants={variantesPagina}>
             <article>
                 <h2>Escríbeme</h2>
-                <p>Rellena el siguiente formulario para enviarme un mensaje y di cosas hermosas que me alegren el corazón. Si no se te ocurre nada, puedes intentarlo en otro momento. No hay prisa.</p>
+                <p>Escríbeme un hermoso mensaje a través del formulario que se presenta más abajo. O si lo prefieres, <Link to="#" onClick={enviarCorreoEnlace}>hazlo con la aplicación de correo de tu ordenador</Link>. Si no se te ocurre nada, puedes intentarlo en otro momento. No hay prisa.</p>
                 <img src={require("../imagenes/escribeme.jpeg")} alt={"Escríbeme"} title={"Escríbeme"}/>
-                <p className="sin-margin-bottom">También puedes escribirme una poesía o el relato breve de tus aventuras con los amigos en la bolera de la esquina. Recuerda que la expresión natural nace de forma espontánea. Si tienes que esforzarte demasiado, ya no vale. Así que, ¡no le des vueltas y escríbeme lo que se te pase por la cabeza de una vez por todas!</p>
+                <p>Puedes enviarme una poesía o el relato breve de tus aventuras con los amigos en la bolera de la esquina. Recuerda que la expresión natural nace de forma espontánea. Si tienes que esforzarte demasiado, ya no vale. Así que, ¡no le des vueltas y escríbeme lo que se te pase por la cabeza de una vez por todas!</p>
             </article>
             <form onSubmit={(e) => enviarCorreo(e)}>
                 <ul className="ul-form">
