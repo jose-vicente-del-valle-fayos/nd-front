@@ -1,7 +1,7 @@
 export const variantesPagina = {
-    initial: { opacity: 0, transition: { duration: 0.3, delay: 0.6 } },
-    in: { opacity: 1, transition: { duration: 0.3, delay: 0.6 } },
-    out: { opacity: 0, transition: { duration: 0.3, delay: 0.6 }}
+    initial: { opacity: 0, transition: { duration: 0.3, delay: 0.3 } },
+    in: { opacity: 1, transition: { duration: 0.3, delay: 0.3 } },
+    out: { opacity: 0, transition: { duration: 0.3, delay: 0.3 } }
 };
 
 export const enviarCorreoEnlace = () => {
