@@ -5,7 +5,9 @@ const Voz = (props: any) => {
 
     const hablar = () => {
         if (window.speechSynthesis) {
-            const utterance = new SpeechSynthesisUtterance(removeMarkdown(props.texto));
+            let utterance = new SpeechSynthesisUtterance();
+            utterance.text = removeMarkdown(props.texto);
+            utterance.lang = "es-ES";
             window.speechSynthesis.speak(utterance);
         } else {
             // console.log('Tu navegador no soporta la síntesis de voz.');
