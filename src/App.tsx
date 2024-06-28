@@ -1,5 +1,5 @@
-import React, {useState, useLayoutEffect} from 'react';
-import './estilos/estilo.scss';
+import React, {useState, useLayoutEffect} from "react";
+import "./estilos/estilo.scss";
 import {BrowserRouter, Routes, Route, useLocation} from "react-router-dom"
 import {AnimatePresence} from "framer-motion";
 import Menu from "./componentes/menu";
