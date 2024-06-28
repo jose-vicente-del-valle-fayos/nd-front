@@ -5,6 +5,8 @@ const Voz = (props: any) => {
 
     const hablar = () => {
         if (window.speechSynthesis) {
+            window.speechSynthesis.cancel();
+            window.speechSynthesis.pause();
             let utterance = new SpeechSynthesisUtterance();
             utterance.text = removeMarkdown(props.texto);
             utterance.lang = "es-ES";
