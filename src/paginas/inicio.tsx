@@ -42,7 +42,7 @@ const Inicio = () => {
                 return (
                     <article key={index}>
                         <h2><Link to={"/entrada/" + entrada.id}>{entrada.titulo}</Link></h2>
-                        <h3>{convertirFecha(entrada.fecha, true)} • {entrada.total_com === 0 ? "sin comentarios" : (entrada.total_com === 1 ? "1 comentario" : (entrada.total_com + " comentarios"))} • {entrada.visitas === 0 ? "sin visitas" : (entrada.visitas === 1 ? "1 visita" : (entrada.visitas + " visitas"))}<Voz texto={entrada.titulo + ". " + convertirFecha(entrada.fecha, false) + ". " + entrada.contenido}/></h3>
+                        <h3>{convertirFecha(entrada.fecha, true)} • {entrada.visitas === 0 ? "sin visitas" : (entrada.visitas === 1 ? "1 visita" : (entrada.visitas + " visitas"))}<Voz texto={entrada.titulo + ". " + convertirFecha(entrada.fecha, false) + ". " + entrada.contenido}/></h3>
                         <Markdown
                             remarkPlugins={[[remarkTextr, {plugins: [smartyPants]}]]}>{entrada.contenido}</Markdown>
                         {(entrada.total_com > 0) ? entrada.comentarios.map((comentario: Comentario, index: number) => {
