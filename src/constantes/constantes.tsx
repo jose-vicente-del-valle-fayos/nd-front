@@ -23,6 +23,7 @@ export const anoActual = (): string => {
 export const smartyPants = (input: string) => {
     const ellipsisReplaced: string = input.replace(/\.\.\./g, "…");
     const emDashReplaced: string = ellipsisReplaced.replace(/---/g, "—");
-    const curlyQuotesReplaced: string = emDashReplaced.replace(/"([^"]*)"/g, "“$1”");
+    const enDashReplaced: string = emDashReplaced.replace(/--/g, "–");
+    const curlyQuotesReplaced: string = enDashReplaced.replace(/"([^"]*)"/g, "“$1”");
     return curlyQuotesReplaced;
 }
