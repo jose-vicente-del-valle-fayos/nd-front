@@ -15,6 +15,7 @@ const Administracion = () => {
     const [eespecial, setEespecial] = useState(false);
     const [etitulo, setEtitulo] = useState("");
     const [efecha, setEfecha] = useState("2006-01-02");
+    const [eimagen, setEimagen] = useState("sin-imagen");
     const [econtenido, setEcontenido] = useState("");
     const [eexito, setEexito] = useState("normal");
     const [cid, setCid] = useState(0);
@@ -74,7 +75,15 @@ const Administracion = () => {
         }
     }
 
-    useEffect(() => {
+    const manejadorImagen = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const files = event.target.files; if (files && files.length > 0) {
+            const fileName = files.item(0)?.name;
+            if (fileName) { setEimagen(fileName); console.log("el nombre del archivo es:", fileName); }
+            else { console.log("el nombre del archivo es null o undefined"); } }
+            else { console.log("no se ha seleccionado archivo"); }
+    };
+
+        useEffect(() => {
         document.title = "Nuestro Diario • Administración";
         (
             async () => {
@@ -114,7 +123,7 @@ const Administracion = () => {
             <p>Insertar o actualizar una entrada en nuestro diario, según se indique el identificador o no. Marcar
                 especial para incluir la entrada en la sección de especial. Escribir el contenido en formato
                 markdown.</p>
-            <form onSubmit={crearActualizarEntrada}>
+            <form onSubmit={crearActualizarEntrada} encType="multipart/form-data">
                 <ul className="ul-form">
                     <li><label className="contenedor-label noetiquetaflotante especial admin" htmlFor="especial"><input
                         type="checkbox" className="especial admin" name="especial"
@@ -145,9 +154,19 @@ const Administracion = () => {
                                placeholder="Fecha (AAAA-MM-DD)" autoComplete="off" autoCorrect="off"
                                autoCapitalize="off" spellCheck="false"
                                onChange={(e) => setEfecha(e.target.value)}/><label>Fecha</label></li>
+                    <li><input type="file" className="subir-archivo admin" name="imagen-entrada"
+                               placeholder="Escribe aquí el comentario…" autoComplete="off" autoCorrect="off"
+                               autoCapitalize="off" spellCheck="false"
+                               onChange={manejadorImagen}/>
+                        {eimagen == "sin-imagen" ?
+                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Selecciona un archivo…</label> :
+                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">{eimagen}</label>
+                        }
+                    </li>
                     <li>
                         <button type="submit" className="enviar boton-largo" value="Publicar">
-                            {eexito == "enviado" ? <i className="mdi mdi-button">done</i> : (eexito == "error" ? <i className="mdi mdi-button">close</i> : <span>Publicar</span>)}
+                            {eexito == "enviado" ? <i className="mdi mdi-button">done</i> : (eexito == "error" ?
+                                <i className="mdi mdi-button">close</i> : <span>Publicar</span>)}
                         </button>
                     </li>
                 </ul>
@@ -186,7 +205,8 @@ const Administracion = () => {
                                onChange={(e) => setCfecha(e.target.value)}/><label>Fecha</label></li>
                     <li>
                         <button type="submit" className="enviar boton-largo">
-                            {cexito == "enviado" ? <i className="mdi mdi-button">done</i> : (cexito == "error" ? <i className="mdi mdi-button">close</i> : <span>Publicar</span>)}
+                            {cexito == "enviado" ? <i className="mdi mdi-button">done</i> : (cexito == "error" ?
+                                <i className="mdi mdi-button">close</i> : <span>Publicar</span>)}
                         </button>
                     </li>
                 </ul>
