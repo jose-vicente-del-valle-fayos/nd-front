@@ -7,6 +7,7 @@ export class Entrada {
         public titulo: string = "",
         public fecha: string = "",
         public contenido: string = "",
+        public imagen: any,
         public comentarios: any = [],
         public total_com: number = 0,
         public visitas: number = 0,

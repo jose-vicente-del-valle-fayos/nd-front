@@ -39,12 +39,12 @@ const Administracion = () => {
             if(eimagen){ formData.append("imagen", eimagen); }
             if(eid === 0) {
                 let {data} = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", }, });
-                if(data.mensaje){ setEexito("error"); }
-                else{ setEexito("enviado"); }
+                if(data.mensaje){ setEexito("error"); console.log(formData) }
+                else{ setEexito("enviado"); console.log(formData) }
             } else {
                 let {data} = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, formData, { headers: { "Content-Type": "multipart/form-data", }, });
-                if(data.mensaje) { setEexito("error"); }
-                else{ setEexito("enviado"); }
+                if(data.mensaje) { setEexito("error"); console.log(formData) }
+                else{ setEexito("enviado"); console.log(formData) }
             }
         } catch (e) {
             console.log(e);
