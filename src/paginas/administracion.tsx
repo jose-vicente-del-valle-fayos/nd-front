@@ -39,7 +39,7 @@ const Administracion = () => {
             formData.append("contenido", econtenido);
             if(eimagen){ formData.append("imagen", fs.createReadStream(eimagen)); }
             if(eid === 0) {
-                let {data} = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", data: formData, }, });
+                let {data} = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", }, data: formData, });
                 if(data.mensaje){ setEexito("error"); console.log(formData) }
                 else{ setEexito("enviado"); console.log(formData) }
             } else {
