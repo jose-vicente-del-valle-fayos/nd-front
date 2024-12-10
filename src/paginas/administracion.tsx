@@ -29,20 +29,23 @@ const Administracion = () => {
     const crearActualizarEntrada = async (e: SyntheticEvent) => {
         e.preventDefault();
         try {
-            let nuevaEntrada = {
-                id_us: eidus,
-                usuario: eusuario,
-                especial: eespecial,
-                titulo: etitulo,
-                fecha: efecha,
-                contenido: econtenido
-            };
+            const formData = new FormData();
+            formData.append("id_us", String(eidus));
+            formData.append("usuario", eusuario);
+            formData.append("especial", String(eespecial));
+            formData.append("titulo", etitulo);
+            formData.append("fecha", efecha);
+            formData.append("contenido", econtenido);
+            const fileInput = document.querySelector<HTMLInputElement>("input[name='imagen-entrada']");
+            if (fileInput?.files && fileInput.files[0]) {
+                formData.append("imagen", fileInput.files[0]);
+            }
             if(eid === 0) {
-                let { data } = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", nuevaEntrada);
+                let { data } = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", }, });
                 if( data.mensaje ) { setEexito("error"); }
                 else { setEexito("enviado"); }
             } else {
-                let { data } = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, nuevaEntrada);
+                let { data } = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, formData, { headers: { "Content-Type": "multipart/form-data", }, });
                 if( data.mensaje ) { setEexito("error"); }
                 else { setEexito("enviado"); }
             }
