@@ -158,7 +158,7 @@ const Administracion = () => {
                                }}/>
                         {eimagen ?
                             <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Selecciona un archivo…</label> :
-                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">{eimagen}</label>
+                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Archivo seleccionado</label>
                         }
                     </li>
                     <li>
