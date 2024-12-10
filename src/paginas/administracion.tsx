@@ -150,14 +150,7 @@ const Administracion = () => {
                     <li><input type="file" className="subir-archivo admin" name="imagen-entrada"
                                placeholder="Escribe aquí el comentario…" autoComplete="off" autoCorrect="off"
                                autoCapitalize="off" spellCheck="false"
-                               onChange={(e) => {
-                                   const files = e.target.files;
-                                   files && files.length > 0 ? setEimagen(files.item(0)) : setEimagen(null);
-                               }}/>
-                        {eimagen ?
-                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Selecciona un archivo…</label> :
-                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Archivo seleccionado</label>
-                        }
+                               onChange={(e) => (e.target.files && e.target.files.length > 0) ? setEimagen(e.target.files.item(0)) : setEimagen(null) }/>
                     </li>
                     <li>
                         <button type="submit" className="enviar boton-largo" value="Publicar">
