@@ -36,18 +36,20 @@ const Administracion = () => {
             formData.append("titulo", etitulo);
             formData.append("fecha", efecha);
             formData.append("contenido", econtenido);
-            const fileInput = document.querySelector<HTMLInputElement>("input[name='imagen-entrada']");
+            let fileInput = document.querySelector<HTMLInputElement>("input[name='imagen-entrada']");
             if (fileInput?.files && fileInput.files[0]) {
                 formData.append("imagen", fileInput.files[0]);
+            } else {
+                console.log("no hay un archivo preparado para subir")
             }
             if(eid === 0) {
-                let { data } = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", }, });
-                if( data.mensaje ) { setEexito("error"); }
-                else { setEexito("enviado"); }
+                let {data} = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", }, });
+                if(data.mensaje){ setEexito("error"); }
+                else{ setEexito("enviado"); }
             } else {
-                let { data } = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, formData, { headers: { "Content-Type": "multipart/form-data", }, });
-                if( data.mensaje ) { setEexito("error"); }
-                else { setEexito("enviado"); }
+                let {data} = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, formData, { headers: { "Content-Type": "multipart/form-data", }, });
+                if(data.mensaje) { setEexito("error"); }
+                else{ setEexito("enviado"); }
             }
         } catch (e) {
             console.log(e);
