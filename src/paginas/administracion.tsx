@@ -156,7 +156,7 @@ const Administracion = () => {
                                        setEimagen(files.item(0));
                                    }
                                }}/>
-                        {eimagen?.name ?
+                        {eimagen ?
                             <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Selecciona un archivo…</label> :
                             <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">{eimagen}</label>
                         }
