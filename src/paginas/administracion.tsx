@@ -15,8 +15,8 @@ const Administracion = () => {
     const [eespecial, setEespecial] = useState(false);
     const [etitulo, setEtitulo] = useState("");
     const [efecha, setEfecha] = useState("2006-01-02");
-    const [eimagen, setEimagen] = useState("sin-imagen");
     const [econtenido, setEcontenido] = useState("");
+    const [eimagen, setEimagen] = useState<File | null>(null);
     const [eexito, setEexito] = useState("normal");
     const [cid, setCid] = useState(0);
     const [cident, setCident] = useState(0);
@@ -36,12 +36,7 @@ const Administracion = () => {
             formData.append("titulo", etitulo);
             formData.append("fecha", efecha);
             formData.append("contenido", econtenido);
-            let fileInput = document.querySelector<HTMLInputElement>("input[name='imagen-entrada']");
-            if (fileInput?.files && fileInput.files[0]) {
-                formData.append("imagen", fileInput.files[0]);
-            } else {
-                console.log("no hay un archivo preparado para subir")
-            }
+            if(eimagen){ formData.append("imagen", eimagen); }
             if(eid === 0) {
                 let {data} = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", }, });
                 if(data.mensaje){ setEexito("error"); }
@@ -80,15 +75,8 @@ const Administracion = () => {
         }
     }
 
-    const manejadorImagen = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const files = event.target.files; if (files && files.length > 0) {
-            const fileName = files.item(0)?.name;
-            if (fileName) { setEimagen(fileName); console.log("el nombre del archivo es:", fileName); }
-            else { console.log("el nombre del archivo es null o undefined"); } }
-            else { console.log("no se ha seleccionado archivo"); }
-    };
 
-        useEffect(() => {
+    useEffect(() => {
         document.title = "Nuestro Diario • Administración";
         (
             async () => {
@@ -162,8 +150,13 @@ const Administracion = () => {
                     <li><input type="file" className="subir-archivo admin" name="imagen-entrada"
                                placeholder="Escribe aquí el comentario…" autoComplete="off" autoCorrect="off"
                                autoCapitalize="off" spellCheck="false"
-                               onChange={manejadorImagen}/>
-                        {eimagen == "sin-imagen" ?
+                               onChange={(e) => {
+                                   const files = e.target.files;
+                                   if (files && files.length > 0) {
+                                       setEimagen(files.item(0));
+                                   }
+                               }}/>
+                        {eimagen?.name ?
                             <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Selecciona un archivo…</label> :
                             <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">{eimagen}</label>
                         }
