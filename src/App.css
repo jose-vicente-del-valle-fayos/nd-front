@@ -1105,7 +1105,7 @@ main form ul.ul-form li input[type=file] {
     box-sizing: initial;
     width: 19em;
     height: 4em;
-    display: none;
+    /* display: none; */
 }
 @media (prefers-color-scheme: dark) {
     main form ul.ul-form li input[type=file] {
