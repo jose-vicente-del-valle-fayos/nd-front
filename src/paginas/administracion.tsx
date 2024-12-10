@@ -5,6 +5,7 @@ import {Navigate} from "react-router-dom";
 import {variantesPagina} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import {Usuario} from "../modelos/usuario";
+import * as fs from "node:fs";
 
 const Administracion = () => {
     const [redirigir, setRedirigir] = useState(false);
@@ -36,13 +37,13 @@ const Administracion = () => {
             formData.append("titulo", etitulo);
             formData.append("fecha", efecha);
             formData.append("contenido", econtenido);
-            if(eimagen){ formData.append("imagen", eimagen); }
+            if(eimagen){ formData.append("imagen", fs.createReadStream(eimagen)); }
             if(eid === 0) {
-                let {data} = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", }, });
+                let {data} = await axios.post(process.env.REACT_APP_BASE_URL + "entrada", formData, { headers: { "Content-Type": "multipart/form-data", data: formData, }, });
                 if(data.mensaje){ setEexito("error"); console.log(formData) }
                 else{ setEexito("enviado"); console.log(formData) }
             } else {
-                let {data} = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, formData, { headers: { "Content-Type": "multipart/form-data", }, });
+                let {data} = await axios.put(process.env.REACT_APP_BASE_URL + "entrada/" + eid, formData, { headers: { "Content-Type": "multipart/form-data", }, data: formData, });
                 if(data.mensaje) { setEexito("error"); console.log(formData) }
                 else{ setEexito("enviado"); console.log(formData) }
             }
