@@ -152,10 +152,12 @@ const Administracion = () => {
                                autoCapitalize="off" spellCheck="false"
                                onChange={(e) => {
                                    const files = e.target.files;
-                                   if (files && files.length > 0) {
-                                       setEimagen(files.item(0));
-                                   }
+                                   files && files.length > 0 ? setEimagen(files.item(0)) : setEimagen(null);
                                }}/>
+                        {eimagen ?
+                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Selecciona un archivo…</label> :
+                            <label htmlFor="imagen-entrada" id="label-imagen-entrada" className="noetiquetaflotante">Archivo seleccionado</label>
+                        }
                     </li>
                     <li>
                         <button type="submit" className="enviar boton-largo" value="Publicar">
