@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, useEffect, useState} from "react";
+import React, {SyntheticEvent, useState} from "react";
 import {Navigate} from "react-router-dom";
 import axios from "axios";
 import {Helmet} from "react-helmet-async";

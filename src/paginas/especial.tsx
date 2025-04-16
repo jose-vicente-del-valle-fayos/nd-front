@@ -11,7 +11,6 @@ import {Comentario} from "../modelos/comentario";
 import Markdown from "react-markdown";
 import remarkTextr from "remark-textr";
 import {Helmet} from "react-helmet-async";
-import {Usuario} from "../modelos/usuario";
 
 const Especial = () => {
     const [entradas, setEntradas] = useState<any[]>([]);

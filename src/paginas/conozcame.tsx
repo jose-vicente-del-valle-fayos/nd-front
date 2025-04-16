@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import {anoActual} from "../constantes/constantes";
 import Pie from "../componentes/pie";

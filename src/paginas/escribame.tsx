@@ -1,4 +1,4 @@
-import React, {SyntheticEvent, useEffect, useState} from "react";
+import React, {SyntheticEvent, useState} from "react";
 import {Link} from "react-router-dom";
 import {enviarCorreoEnlace} from "../constantes/constantes";
 import Pie from "../componentes/pie";

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link} from "react-router-dom";
 import {convertirFecha, smartyPants, registrarVisita, verificarVisitas} from "../constantes/constantes";
 import Pie from "../componentes/pie";
 import Voz from "../componentes/voz";
@@ -11,7 +11,6 @@ import {Comentario} from "../modelos/comentario";
 import Markdown from "react-markdown";
 import remarkTextr from "remark-textr";
 import {Helmet} from "react-helmet-async";
-import {Usuario} from "../modelos/usuario";
 
 const Inicio = () => {
     const [entradas, setEntradas] = useState<any[]>([]);

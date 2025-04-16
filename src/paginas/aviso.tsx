@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {Link} from "react-router-dom";
 import Pie from "../componentes/pie";
 import {Helmet} from "react-helmet-async";
